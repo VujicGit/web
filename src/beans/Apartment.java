@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class Apartment {
 	private List<Comment> comments;
 	private List<BufferedImage> images;
 	private double price;
-	private Date checkInDate;
-	private String checkoutDate;
-	private Status status;
+	private LocalTime checkInTime;
+	private LocalTime checkoutTime;
+	private ApartmentStatus apartmentStatus;
 	private List<Amenities> amenities;
 	private List<Reservation> reservation;
 	
@@ -108,28 +109,28 @@ public class Apartment {
 		this.price = price;
 	}
 
-	public Date getCheckInDate() {
-		return checkInDate;
+	public LocalTime getCheckInDate() {
+		return checkInTime;
 	}
 
-	public void setCheckInDate(Date checkInDate) {
-		this.checkInDate = checkInDate;
+	public void setCheckInDate(LocalTime checkInDate) {
+		this.checkInTime = checkInDate;
 	}
 
-	public String getCheckoutDate() {
-		return checkoutDate;
+	public LocalTime getCheckoutDate() {
+		return checkoutTime;
 	}
 
-	public void setCheckoutDate(String checkoutDate) {
-		this.checkoutDate = checkoutDate;
+	public void setCheckoutDate(LocalTime checkoutDate) {
+		this.checkoutTime = checkoutDate;
 	}
 
-	public Status getStatus() {
-		return status;
+	public ApartmentStatus getStatus() {
+		return apartmentStatus;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus(ApartmentStatus apartmentStatus) {
+		this.apartmentStatus = apartmentStatus;
 	}
 
 	public List<Amenities> getAmenities() {
