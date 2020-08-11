@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Apartment {
 	
+	private String id;
 	private ApartmentType type;
 	private int numberOfRooms;
 	private int numberOfGuests;
@@ -147,6 +148,14 @@ public class Apartment {
 
 	public void setReservation(List<Reservation> reservation) {
 		this.reservation = reservation;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
