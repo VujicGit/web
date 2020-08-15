@@ -5,9 +5,6 @@
     height: 55px;
 }
 
-.navbar-brand-custom {
-    font-size: 50px;
-}
 
 .navbar-brand-custom {
     font-size: 20px;
@@ -23,45 +20,41 @@
     float: left;
 }
 
+.navbar-ul {
+    height: 100%;
+}
+
 .navbar-brand {
     color: white;
 }
 
-.carousel .carousel-item {
-    height: 500px;
+.nav-item-custom {
+    width: 120px;
+}
+
+.navbar-btn-custom {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background-color: #0099ff;
+    font-size: medium;
     width: 100%;
 }
 
-.carousel-inner .carousel-item img {
-
-    height: 100%;
-
+.navbar-btn-custom:focus {
+    box-shadow: none !important;
+    outline: 0;
+    background-color: 0099ff;
 }
 
-.nav-item-custom {
-    width: 80px;
-    padding: 0;
-    padding-top: 5%;
-    padding-left: 3%;
+.modal-form-input {
+    margin-bottom: 2rem;
 }
 
-.navbar-link-custom {
-    color: white;
-    font-size: 20px;
-
+.modal-form-input-selection {
+    margin-bottom: 3rem;
 }
 
-.nav-item-custom:hover {
-    background-color: #006bb3;
-
-}
-
-.navbar-link-custom:hover {
-    text-decoration: none;
-    color: white;
-}
-
-.navbar-ul {
-    height: 100%;
-
+.login-form-button {
+    margin-left: auto;
 }

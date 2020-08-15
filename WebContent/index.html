@@ -23,10 +23,13 @@
             </ul>
             <ul class="navbar-nav ml-auto navbar-ul">
                 <li class="nav-item nav-item-custom">
-                    <a href="#" class="navbar-link-custom">Sign up</a>
+                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
+                        data-target="#SignUpModal">Sign
+                        up</button>
                 </li>
-                <li class=" nav-item nav-item-custom" style="padding-left: 8%;">
-                    <a href=" #" class="navbar-link-custom">Login</a>
+                <li class=" nav-item nav-item-custom">
+                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
+                        data-target="#LoginModal">Login</button>
                 </li>
             </ul>
         </nav>
@@ -35,6 +38,68 @@
     </header>
 
     <main>
+        <div id="LoginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group modal-form-input" id="emailInput">
+                                <input type="email" class="form-control" placeholder="Username">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary ">Login</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="SignUpModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Sign up</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group modal-form-input" id="nameInput">
+                                <input type="text" class="form-control" placeholder="Username">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="text" class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <div class="form-group modal-form-input-selection">
+                                <select class="form-control">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary ">Sign up</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
 
 
     </main>
