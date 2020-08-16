@@ -30,6 +30,7 @@
 
 .nav-item-custom {
     width: 120px;
+    color: white;
 }
 
 .navbar-btn-custom {
@@ -58,3 +59,15 @@
 .login-form-button {
     margin-left: auto;
 }
+
+.nav-link-custom {
+	font-size: medium;
+	color: white;
+	text-decoration: none;
+}
+
+.nav-link-custom:hover {
+	
+	text-decoration: none;
+}
+
