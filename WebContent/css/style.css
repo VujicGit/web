@@ -58,3 +58,40 @@
 .login-form-button {
     margin-left: auto;
 }
+
+body {
+    background-color: #f0f2f5;
+}
+
+.custom {
+    border: 3px solid;
+}
+
+.row {
+    margin: 0;
+}
+
+.col-4 {
+    padding: 0;
+}
+
+.col {
+    padding: 0;
+}
+
+.date-picker-input-custom {
+    border: 0;
+}
+
+.date-picker-input-custom:focus {
+    box-shadow: none !important;
+    outline: 0;
+    background-color: 0099ff;
+}
+
+.search-input-custom {
+    width: 100%;
+    height: 38px;
+    font-size: 1rem;
+    border: 0;
+}
