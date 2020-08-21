@@ -30,6 +30,33 @@ public class Apartment {
 	private List<Reservation> reservation;
 	
 	
+	public Apartment() {
+		super();
+	}
+
+	public Apartment(String id, ApartmentType type, int numberOfRooms, int numberOfGuests, Location location,
+			List<Date> datesForRent, List<Date> datesForIssue, Host host, List<Comment> comments,
+			List<BufferedImage> images, double price, 
+			ApartmentStatus apartmentStatus, List<Amenities> amenities, List<Reservation> reservation) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.numberOfRooms = numberOfRooms;
+		this.numberOfGuests = numberOfGuests;
+		this.location = location;
+		this.datesForRent = datesForRent;
+		this.datesForIssue = datesForIssue;
+		this.host = host;
+		this.comments = comments;
+		this.images = images;
+		this.price = price;
+		this.checkInTime = checkInTime;
+		this.checkoutTime = checkoutTime;
+		this.apartmentStatus = apartmentStatus;
+		this.amenities = amenities;
+		this.reservation = reservation;
+	}
+
 	public ApartmentType getType() {
 		return type;
 	}

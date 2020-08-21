@@ -1,5 +1,7 @@
 package dao.cruddao;
 
+import java.util.Collection;
+
 public interface CRUDDao<T, ID> {
 
 	int count();
@@ -12,11 +14,11 @@ public interface CRUDDao<T, ID> {
 	
 	boolean existsById(ID id);
 	
-	Iterable<T> findAll();
+	Collection<T> findAll();
 	
 	T findById(ID id);
 	
-	void save(T entity);
+	boolean save(T entity);
 	
-	void saveAll(Iterable<T> entities);
+	boolean saveAll(Collection<T> entities);
 }
