@@ -1,5 +1,5 @@
 package beans;
 
-public class Host {
+public class Host extends User {
 
 }
