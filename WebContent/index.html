@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
 </head>
@@ -33,11 +36,6 @@
                 </li>
             </ul>
         </nav>
-
-
-    </header>
-
-    <main>
         <div id="LoginModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -101,7 +99,31 @@
             </div>
         </div>
 
+    </header>
 
+    <main>
+        <form style="padding-top: 100px;">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col-4">
+                        <input class="search-input-custom" type="text" placeholder="Dje idete?">
+                    </div>
+                    <div class="col">
+                        <div class="input-daterange input-group" id="datepicker" style="height: 100%;">
+                            <input type="text" class="input-sm form-control date-picker-input-custom" name="start"
+                                placeholder="Dolazak" />
+
+                            <input type=" text" class="input-sm form-control date-picker-input-custom" name="end"
+                                placeholder="Odlazak" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input class="search-input-custom" type="text" placeholder="Cena">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
     </main>
 
 
@@ -109,5 +131,6 @@
 
     </footer>
 </body>
+
 
 </html>
