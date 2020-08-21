@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javafx.collections.MappingChange.Map;
+
 
 import beans.Address;
 import beans.Amenities;
@@ -27,7 +27,7 @@ import beans.Location;
 import beans.Reservation;
 import beans.Status;
 import dao.impl.ApartmentDAO;
-import javafx.util.converter.LocalTimeStringConverter;
+
 
 public class Main {
 
