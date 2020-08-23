@@ -87,6 +87,7 @@ body {
     box-shadow: none !important;
     outline: 0;
     background-color: 0099ff;
+    border: 0;
 }
 
 .search-input-custom {
@@ -94,4 +95,31 @@ body {
     height: 38px;
     font-size: 1rem;
     border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.page-item:hover {
+    background-color: white;
+}
+
+.card-custom {
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+.div-search-labels {
+    height: 24px;
+}
+
+.search-labels {
+    color: black;
+}
+
+.search-row-custom {
+    margin-top: 20px;
+}
+
+.card-custom:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

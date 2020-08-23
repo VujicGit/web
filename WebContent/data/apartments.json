@@ -1,22 +1,5 @@
 {
-    "apar2": {
-        "id": "apar2",
-        "type": null,
-        "numberOfRooms": 0,
-        "numberOfGuests": 0,
-        "location": null,
-        "datesForRent": null,
-        "datesForIssue": null,
-        "host": null,
-        "comments": null,
-        "images": null,
-        "price": 0.0,
-        "amenities": null,
-        "reservation": null,
-        "checkoutDate": null,
-        "checkInDate": null,
-        "status": null
-    },
+
     "apar1": {
         "id": "apar1",
         "type": "FULL",
@@ -26,7 +9,7 @@
             "latitude": 32.0,
             "longitude": 23.0,
             "address": {
-                "street": "Milosa Crnjanskog",
+                "street": "dada Crnjanskog",
                 "number": "8",
                 "place": "Sremska Mitrovica",
                 "zipCode": "22000"
