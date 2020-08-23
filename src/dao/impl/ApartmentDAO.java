@@ -38,12 +38,38 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 		
 	}
 
+	@Override
+	public boolean add(Apartment entity) {
+		if(existsById(entity.getId())) {
+			return false;
+		}
+		apartments.put(entity.getId(), entity);
+		save();
+		return true;
+	}
+
+	@Override
+	public boolean update(Apartment entity) {
+		if(!existsById(entity.getId()) || isDeleted(entity.getId())) {
+			return false;
+		}
+		apartments.put(entity.getId(), entity);
+		save();
+		return true;
+		
+	}
 	
 	
 	@Override
-	public void delete(Apartment entity) {
-		apartments.remove(entity.getId());
-
+	public boolean delete(Apartment entity) {
+		if(!existsById(entity.getId()) || isDeleted(entity.getId())) {
+			return false;
+		}
+		Apartment apartment = findById(entity.getId());
+		apartment.setDeleted(true);
+		apartments.put(apartment.getId(), apartment);
+		save();
+		return true;
 	}
 
 	@Override
@@ -53,8 +79,15 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	}
 
 	@Override
-	public void deleteById(String id) {
-		apartments.remove(id);
+	public boolean deleteById(String id) {
+		if(!existsById(id)) {
+			return false;
+		}
+		Apartment apartment = findById(id);
+		apartment.setDeleted(true);
+		save();
+		return true;
+		
 
 	}
 
@@ -62,11 +95,24 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	public boolean existsById(String id) {
 		return apartments.containsKey(id);
 	}
+	
+	@Override
+	public boolean isDeleted(String id) {
+		Apartment apartment = findById(id);
+		return apartment.isDeleted();
+	}
+
 
 	@Override
 	public Collection<Apartment> findAll() {
 		// TODO Auto-generated method stub
-		return apartments.values();
+		Collection<Apartment> apartmentsList = apartments.values();
+		for (Apartment apartment : apartmentsList) {
+			if(isDeleted(apartment.getId())) {
+				apartmentsList.remove(apartment);
+			}
+		}
+		return apartmentsList;
 	}
 
 	@Override
@@ -75,12 +121,7 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	}
 
 	@Override
-	public boolean save(Apartment entity) {
-		
-		if(apartments.containsKey(entity.getId())) {
-			return false;
-		}
-		apartments.put(entity.getId(), entity);
+	public boolean save() {
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(contextPath + File.separator + "data" + File.separator + "apartments.json");
 		
@@ -135,6 +176,8 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 		
 	
 	}
+
+
 
 	
 

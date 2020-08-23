@@ -6,19 +6,25 @@ public interface CRUDDao<T, ID> {
 
 	int count();
 	
-	void delete(T entity);
+	boolean add(T entity);
+	
+	boolean update(T entity);
+	
+	boolean delete(T entity);
 	
 	void deleteAll();
 	
-	void deleteById(ID id);
+	boolean deleteById(ID id);
 	
 	boolean existsById(ID id);
+	
+	boolean isDeleted(String id);
 	
 	Collection<T> findAll();
 	
 	T findById(ID id);
 	
-	boolean save(T entity);
+	boolean save();
 	
 	boolean saveAll(Collection<T> entities);
 }
