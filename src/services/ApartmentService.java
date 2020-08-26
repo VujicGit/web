@@ -30,7 +30,6 @@ public class ApartmentService {
 	public void init() {
 		if(ctx.getAttribute("apartmentDAO") == null) {
 			String contextPath = ctx.getRealPath("");
-	    	System.out.println(contextPath);
 			ctx.setAttribute("apartmentDAO", new ApartmentDAO(contextPath));
 		}
 	}

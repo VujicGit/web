@@ -106,6 +106,7 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	@Override
 	public Collection<Apartment> findAll() {
 		// TODO Auto-generated method stub
+		loadApartments(contextPath);
 		Collection<Apartment> apartmentsList = apartments.values();
 		for (Apartment apartment : apartmentsList) {
 			if(isDeleted(apartment.getId())) {
@@ -149,7 +150,6 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	private void loadApartments(String contextPath) {
 		BufferedReader in = null;
 		File file = new File(contextPath + File.separator + "data" + File.separator + "apartments.json");
-		System.out.println(file.getPath());
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<HashMap<String,Apartment>> typeRef 
         = new TypeReference<HashMap<String,Apartment>>() {};
