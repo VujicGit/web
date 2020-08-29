@@ -28,6 +28,7 @@ public class Apartment {
 	private ApartmentStatus apartmentStatus;
 	private List<Amenities> amenities;
 	private List<Reservation> reservation;
+	private boolean deleted;
 	
 	
 	public Apartment() {
@@ -55,6 +56,9 @@ public class Apartment {
 		this.apartmentStatus = apartmentStatus;
 		this.amenities = amenities;
 		this.reservation = reservation;
+
+		this.deleted = false;
+
 	}
 
 	public ApartmentType getType() {
@@ -184,7 +188,16 @@ public class Apartment {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	
 	
 	
