@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Host</title>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+			<ul class="navbar-nav navbar-ul">
+				<li class="navbar-brand"><a href="#"
+					class=" navbar-brand-custom">Booking</a></li>
+				<li class="navbar-brand">
+                <a class="nav-link-custom" href="#"><button class="btn btn-primary navbar-btn-custom">Apartments</button></a>
+            </li>
+            <li class="navbar-brand">
+                <a class="nav-link-custom" href="#"><button class="btn btn-primary navbar-btn-custom">Reservations</button></a>
+            </li>
+            <li class="navbar-brand">
+                <a class="nav-link-custom" href="#"><button class="btn btn-primary navbar-btn-custom">Users</button></a>
+            </li>
+			</ul>
+			<ul class="navbar-nav ml-auto navbar-ul">
+				<li class="dropdown dropdown-menu-right">
+					<button class="btn btn-primary navbar-btn-custom dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						User
+						</button>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Create apartment</a> <a
+							class="dropdown-item" href="#">Logout</a>
+							
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	
+	   <main>
+        <!--<form action="#" style="padding-top: 100px;" id="form">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col-4">
+                        <input class="search-input-custom" type="text" placeholder="Dje idete?" name="destination">
+                    </div>
+                    <div class="col">
+                        <div class="input-daterange input-group" id="datepicker" style="height: 100%;">
+                            <input type="text" class="input-sm form-control date-picker-input-custom" name="startDate"
+                                placeholder="Dolazak" />
+                            <input type=" text" class="input-sm form-control date-picker-input-custom" name="endDate"
+                                placeholder="Odlazak" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input class="search-input-custom" type="text" placeholder="Cena" name="price">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" id="btnSubmit">Potvrdi</button>
+                    </div>
+                    <div class="col">
+                        <p id="test1">Ddadad </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    -->
+
+
+
+        <div class="row">
+            <div class="col-4 " style="padding-right: 20px; padding-left: 160px; margin-top: 100px;">
+
+                <div class="card text-white mb-3 card-custom"
+                    style="max-width: 18rem; background-color: #febb02; border-radius: 10px;">
+                    <div class="card-body">
+                        <form action="#">
+                            <div class="container">
+                                <div class="row div-search-labels">
+                                    <p class="search-labels">Place:</p>
+                                </div>
+                                <div class="row">
+                                    <input type="text" class="form-control" style="width: 100%; padding: 0; border: 0;">
+                                </div>
+                                <div class="row">
+                                    <div class="input-daterange" id="datepicker">
+
+                                        <div class="row div-search-labels">
+                                            <p class="search-labels">Check-in date:</p>
+                                        </div>
+                                        <div class="row">
+                                            <input type="text"
+                                                class="input-sm form-control date-picker-input-custom float-left"
+                                                name="startDate" placeholder="mm/dd/yyyy" />
+                                        </div>
+                                        <div class="row div-search-labels">
+                                            <p class="search-labels">Check-out date:</p>
+                                        </div>
+                                        <div class="row">
+                                            <input type=" text" class="input-sm form-control date-picker-input-custom"
+                                                name="endDate" placeholder="mm/dd/yyyy" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-8" id="apartmentsCol">
+
+                <!--<div class="card card-custom" style="width: 50rem; margin-top: 100px;">
+                    <div class="row no-gutters" style="border-radius: 25px;">
+                        <div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"
+                            style="background: #868e96;">
+                            <img src="proba/1.jpg"
+                                style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"
+                                class="card-img-top h-100" alt="...">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 class="card-title">Alice Liddel</h5>
+                                <p class="card-text">Alice is a freelance web designer and developer based in
+                                    London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.facebook.com/" class="stretched-link"></a>
+                </div>-->
+
+            </div>
+        </div>
+
+
+
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+
+
+
+    </main>
+
+	<footer> </footer>
+</body>
+</html>
