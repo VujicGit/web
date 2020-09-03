@@ -54,7 +54,7 @@
             "rating": 2
         }],
         "images": [],
-        "price": 12.0,
+        "price": 123,
         "amenities": [{
             "id": "1",
             "name": "Tv"
@@ -80,7 +80,7 @@
             },
             "reservationBegins": 61544786400000,
             "numberOfNights": 4,
-            "price": 3232321.0,
+            "price": 22999.0,
             "message": "dada",
             "guest": {
                 "username": "",
@@ -151,7 +151,7 @@
             "rating": 2
         }],
         "images": [],
-        "price": 13.0,
+        "price": 433.0,
         "amenities": [{
             "id": "1",
             "name": "Tv"
@@ -177,7 +177,7 @@
             },
             "reservationBegins": 61544786400000,
             "numberOfNights": 4,
-            "price": 12.0,
+            "price": 22999.0,
             "message": "dada",
             "guest": {
                 "username": "",
