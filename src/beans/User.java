@@ -7,20 +7,20 @@ public class User {
 	private String name;
 	private String surname;
 	private Gender gender;
-	
+	private Role role;
+
 	public User() {
-		this.username = "";
-		this.password = "";
-		this.name = "";
-		this.surname = "";
+		super();
 	}
 	
-	public User(String username, String password, String name, String surname, Gender gender) {
+	public User(String username, String password, String name, String surname, Gender gender, Role role) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.surname = surname;
 		this.gender = gender;
+		this.role = role;
 	}
 	
 	public String getUsername() {
@@ -52,6 +52,12 @@ public class User {
 	}
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	
