@@ -56,21 +56,22 @@ public class ApartmentService {
 	public Collection<Apartment> search(SearchDTO searchDTO) {
 		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
 		ArrayList<Apartment> apartments = new ArrayList<Apartment>(dao.findAll());
-		if(searchDTO.getLocation().equals("")) {
-			return apartments;
-		}
 		for (Apartment apartment : new ArrayList<Apartment>(apartments)) {
-			Location location = apartment.getLocation();
-			Address address = location.getAddress();
-			String place = address.getPlace();
-			
-			ArrayList<Date> datesForRent = (ArrayList<Date>) apartment.getDatesForRent();
-			
-			if(!place.toLowerCase().equals(searchDTO.getLocation().toLowerCase())) {
+			if(!equalsByPlace(apartment, searchDTO) && !searchDTO.getLocation().equals("")) {
 				apartments.remove(apartment);
 			}
-		
-				
+			
+			if(!checkPrice(apartment, searchDTO) && searchDTO.getMinPrice() != 0.0 && searchDTO.getMaxPrice() != 0.0) {
+				apartments.remove(apartment);
+			}
+			
+			if(!checkRooms(apartment, searchDTO) && searchDTO.getNumberOfRooms() != 0) {
+				apartments.remove(apartment);
+			}
+			
+			if(!checkGuests(apartment, searchDTO) && searchDTO.getNumberOfGuests() != 0) {
+				apartments.remove(apartment);
+			}
 			
 			
 		}
@@ -78,6 +79,39 @@ public class ApartmentService {
 			
 		
 		return apartments;
+	}
+	
+	/*Methods used for search*/
+	private String getPlace(Apartment apartment) {
+		Location apartmentLocation = apartment.getLocation();
+		Address apartmentAddress = apartmentLocation.getAddress();
+		String place = apartmentAddress.getPlace();
+		return place;
+	}
+	
+	private boolean equalsByPlace(Apartment apartment, SearchDTO searchDTO) {
+		return getPlace(apartment).toLowerCase().equals(searchDTO.getLocation().toLowerCase());
+	}
+	
+	private boolean checkPrice(Apartment apartment, SearchDTO searchDTO) {
+		if(apartment.getPrice() >= searchDTO.getMinPrice() && apartment.getPrice() <= searchDTO.getMaxPrice()) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean checkRooms(Apartment apartment, SearchDTO searchDTO) {
+		if(apartment.getNumberOfRooms() == searchDTO.getNumberOfRooms()) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean checkGuests(Apartment apartment, SearchDTO searchDTO) {
+		if(apartment.getNumberOfGuests() == searchDTO.getNumberOfGuests()) {
+			return true;
+		}
+		return false;
 	}
 	
 	
