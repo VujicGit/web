@@ -30,7 +30,7 @@ public class ApartmentService {
 	ServletContext ctx;
 	
 	public ApartmentService() {
-		System.out.println("dadada");
+		
 	}
 	
 	@PostConstruct

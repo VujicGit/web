@@ -14,7 +14,11 @@ $(document).ready(function () {
 
     btnCancel.click(function () {
         getAllApartments(apartmentsCol);
+        let date = $('.input-daterange input').datepicker('getDate');
+        alert(date);
         resetForm();
+
+
     });
 
     form.submit(function (event) {

@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import org.osgi.framework.AdminPermission;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,37 +18,48 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Address;
+import beans.Admin;
 import beans.Amenities;
 import beans.Apartment;
 import beans.ApartmentStatus;
 import beans.ApartmentType;
 import beans.Comment;
+import beans.Gender;
 import beans.Guest;
 import beans.Host;
 import beans.Location;
 import beans.Reservation;
+import beans.Role;
 import beans.Status;
+import beans.User;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Address address = new Address("Milosa Crnjanskog", "8", "Sremska Mitrovica", "22000");
-		Location location = new Location(32, 23, address);
-		ArrayList<Date> datesForRent = new ArrayList<Date>();
-		datesForRent.add(new Date(2020, 3, 28));
-		ArrayList<Date> datesForIssue = new ArrayList<Date>();
-		datesForIssue.add(new Date(2020, 4, 12));
-		Host host = new Host();
-		ArrayList<Comment> comments = new ArrayList<Comment>();
-		comments.add(new Comment(new Guest(), new Apartment(), "dadada", 2));
 		
+
+		User user = new User("pera", "pera123", "Petar", "Petrovic", Gender.MALE, Role.ADMIN);
 		
-		ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-		File imageFile = new File("WebContent\\proba\\1.jpg");
-		BufferedImage bufferedImage;
+		HashMap<String, User> mapUser = new HashMap<String, User>();
+		mapUser.put(user.getUsername(), user);
+
+		ObjectMapper mapperUser = new ObjectMapper();
+
+		
+		Guest guest = new Guest(user.getUsername(), user.getPassword(), user.getName(), user.getSurname(), user.getGender(), user.getRole());
+		HashMap<String, Guest> mapGuest = new HashMap<String, Guest>();
+		mapGuest.put(guest.getUsername(), guest);
+		
+		ObjectMapper mapperGuest = new ObjectMapper();
+		
 		try {
-			bufferedImage = ImageIO.read(imageFile);
-			images.add(bufferedImage);
+			mapperGuest.writeValue(Paths.get("WebContent\\data\\guests.json").toFile(), mapGuest);
+		} catch (JsonGenerationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -54,25 +67,9 @@ public class Main {
 		
 		
 		
-		LocalTime checkInTime = LocalTime.of(12, 30);
-		LocalTime checkOutTime = LocalTime.of(8, 30);
-		ArrayList<Amenities> amenities = new ArrayList<Amenities>();
-		amenities.add(new Amenities("1", "Tv"));
-		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		reservations.add(
-				new Reservation(new Apartment(), new Date(2020, 3, 12), 4, 22999, "dada", new Guest(), Status.ACEPTED));
-		Apartment apartment = new Apartment("apar1", ApartmentType.FULL, 3, 3, location, datesForRent, datesForIssue,
-				host, comments, images, 32, ApartmentStatus.ACTIVE, amenities, reservations);
-
-		HashMap<String, Apartment> map = new HashMap<String, Apartment>();
-
-		map.put("apar1", apartment);
-
-		ObjectMapper mapper = new ObjectMapper();
-
 		// convert map to JSON file
 		try {
-			mapper.writeValue(Paths.get("WebContent\\data\\apartments.json").toFile(), map);
+			mapperUser.writeValue(Paths.get("WebContent\\data\\users.json").toFile(), mapUser);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,12 +82,12 @@ public class Main {
 		}
 
 		ObjectMapper mapper2 = new ObjectMapper();
-		HashMap<String, Apartment> map2 = new HashMap<String, Apartment>();
-		TypeReference<HashMap<String, Apartment>> typeRef = new TypeReference<HashMap<String, Apartment>>() {
+		HashMap<String, User> map2 = new HashMap<String, User>();
+		TypeReference<HashMap<String, User>> typeRef = new TypeReference<HashMap<String, User>>() {
 		};
 		// convert JSON file to map
 		try {
-			map2 = mapper2.readValue(Paths.get("user.json").toFile(), typeRef);
+			map2 = mapper2.readValue(Paths.get("WebContent\\data\\users.json").toFile(), typeRef);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +98,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(map2.get("pera").getName());
 		
 
 	}

@@ -1,0 +1,10 @@
+{
+    "pera": {
+        "username": "pera",
+        "password": "pera123",
+        "name": "Petar",
+        "surname": "Petrovic",
+        "gender": "MALE",
+        "role": "ADMIN"
+    }
+}

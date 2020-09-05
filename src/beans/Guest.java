@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Guest extends User {
@@ -14,6 +15,12 @@ public class Guest extends User {
 		super();
 		this.apartments = apartments;
 		this.reservations = reservations;
+	}
+	
+	public Guest(String username, String password, String name, String surname, Gender gender, Role role) {
+		super(username, password, name, surname, gender, role);
+		this.apartments = new ArrayList<Apartment>();
+		this.reservations = new ArrayList<Reservation>();
 	}
 
 	public List<Apartment> getApartments() {
