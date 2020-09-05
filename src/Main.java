@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Address;
-import beans.Admin;
+
 import beans.Amenities;
 import beans.Apartment;
 import beans.ApartmentStatus;

@@ -65,17 +65,6 @@ public class RegisterService {
 		return null;
 	}
 	
-	@GET
-	@Path("/testlogin")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String testLogin() {
-		User user = null;
-		user = (User)request.getSession().getAttribute("loggedInUser");
-		if(user == null) {
-			return "No user logged in";
-		}
-		return user.getName() + " " + user.getSurname();
-	}
 	private boolean existsByUsername(String username) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		return userDAO.existsById(username);
