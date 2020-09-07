@@ -22,3 +22,12 @@
     margin-right: 17.8rem;
     margin-top: 10px;
 }
+
+.highlighted-cal-dates {
+    background-color: #00FF00;
+    color: black;
+}
+
+.date {
+    background-color: black;
+}

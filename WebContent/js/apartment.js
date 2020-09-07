@@ -1,6 +1,38 @@
 $(document).ready(function () {
+
+    var date = new Date();
+
+    $('.date').datepicker({
+        datesDisabled: ['09/20/2020'],
+        startDate: date,
+        beforeShowDay: function (date) {
+
+            return highlightDates(date);
+        }
+    });
     getApartment();
+
 });
+
+function highlightDates(date) {
+    calenderDate = (("0" + date.getMonth()).slice(-2)) + "/" + ('0' + date.getDate()).slice(-2) + "/" + date.getFullYear();
+
+    var availableDates = ["09/01/2020", "09/02/2020"];
+    var search_index = $.inArray(calenderDate, availableDates);
+    if (search_index > -1) {
+        return {
+            classes: 'highlighted-cal-dates',
+            tooltip: 'This date is available'
+        };
+    }
+    if (search_index === -1) {
+        return false;
+    }
+}
+
+function getAvailableDates() {
+
+}
 
 function getApartment() {
     $.ajax({

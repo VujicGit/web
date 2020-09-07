@@ -1,5 +1,12 @@
 $(document).ready(function () {
-    $('.input-daterange').datepicker({});
+
+    var date = new Date();
+    date.setDate(date.getDate());
+    $('.input-daterange').datepicker({
+        todayHighlight: true,
+        datesDisabled: ['09/20/2020'],
+        startDate: date
+    });
 
     let btnSubmit = $("#btnSubmit");
     let btnCancel = $("#btnCancel");
@@ -41,7 +48,7 @@ $(document).ready(function () {
 
         searchApartments(apartmentsCol);
     });
-    s
+
 });
 
 function getAllApartments(apartmentsCol) {
