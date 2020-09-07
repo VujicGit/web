@@ -103,7 +103,7 @@ body {
     background-color: white;
 }
 
-.card-custom {
+.card-custom-apartment {
     margin-bottom: 20px;
     border-radius: 25px;
 }
@@ -120,7 +120,7 @@ body {
     margin-top: 20px;
 }
 
-.card-custom:hover {
+.card-custom-apartment:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -128,4 +128,10 @@ body {
     color: red;
     margin-left: 5px;
     margin-bottom: 0;
+}
+
+.form-button-submit {
+    margin-top: 5px;
+    background-color: #0099ff;
+
 }

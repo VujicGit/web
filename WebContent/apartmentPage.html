@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/apartment.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/homePage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <ul class="navbar-nav navbar-ul">
+                <li class="navbar-brand">
+                    <a href="#" class=" navbar-brand-custom">Booking</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto navbar-ul">
+                <li class="nav-item nav-item-custom">
+                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
+                        data-target="#SignUpModal">Sign
+                        up</button>
+                </li>
+                <li class=" nav-item nav-item-custom">
+                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
+                        data-target="#LoginModal">Login</button>
+                </li>
+            </ul>
+        </nav>
+        <div id="LoginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm" action="#" method="POST">
+                            <div class="form-group modal-form-input" id="emailInput">
+                                <input type="text" class="form-control" placeholder="Username" id="loginUsername">
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control" placeholder="Password" id="loginPassword">
+                                <p class="error-messages" id="loginErrorMessage"></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary " id="btnLogin">Login</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="SignUpModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Sign up</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="registerForm">
+                            <div class="form-group modal-form-input" id="nameInput">
+                                <input type="text" class="form-control sign-up-input" placeholder="Username"
+                                    id="username">
+                                <p class="error-messages" id="usernameErrorMessage"></p>
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="text" class="form-control sign-up-input" placeholder="First name"
+                                    id="name">
+                                <p class="error-messages" id="nameErrorMessage"></p>
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="text" class="form-control sign-up-input" placeholder="Last name"
+                                    id="surname">
+                                <p class="error-messages" id="surnameErrorMessage"></p>
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control sign-up-input" placeholder="Password"
+                                    id="password">
+                                <p class="error-messages" id="passwordErrorMessage"></p>
+
+                            </div>
+                            <div class="form-group modal-form-input">
+                                <input type="password" class="form-control sign-up-input" placeholder="Password"
+                                    id="passwordControl">
+                                <p class="error-messages" id="passwordControlErrorMessage"></p>
+                            </div>
+                            <div class="form-group modal-form-input-selection">
+                                <select class="form-control" id="gender">
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary " id="btnSignUp">Sign up</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </header>
+
+    <main>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="proba/1.jpg" alt="First slide">
+                                </div>
+
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container container-form-custom">
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <div class="card text-white mb-3 card-custom"
+                            style="max-width: 18rem; background-color: #febb02; border-radius: 10px; float:right;">
+                            <div class="card-body">
+                                <form name="reserveForm" action="#" method="POST">
+                                    <div class="container">
+
+
+
+                                        <div class="row div-search-labels">
+                                            <p class="search-labels">Check-in date:</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group date" data-provide="datepicker">
+                                                <input type="text"
+                                                    class="form-control date-picker-input-custom float-left"
+                                                    placeholder="mm/dd/yyyy" id="checkInDateInput">
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row div-search-labels">
+                                            <p class="search-labels">Number of nights:</p>
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="form-control"
+                                                style="width: 100%; padding: 0; border: 0;" id="nights">
+                                        </div>
+
+                                        <div class="row">
+
+                                            <button type="submit"
+                                                class="btn btn-primary form-button-submit">Submit</button>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+
+    <footer>
+
+
+
+
+    </footer>
+</body>
+
+
+</html>

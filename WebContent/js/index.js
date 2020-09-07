@@ -41,7 +41,7 @@ $(document).ready(function () {
 
         searchApartments(apartmentsCol);
     });
-
+    s
 });
 
 function getAllApartments(apartmentsCol) {
@@ -63,7 +63,7 @@ function getAllApartments(apartmentsCol) {
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                    '<a href="rest/apartments/' + apartment.id + '"' + 'class="stretched-link"></a>' +
+                    '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
                     '</div>')
 
 
@@ -84,7 +84,7 @@ function searchApartments(apartmentsCol) {
         success: function (apartments) {
             apartmentsCol.empty();
             for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom" style="width: 50rem; margin-top: 100px;">' +
+                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-top: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
                     '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
@@ -96,7 +96,7 @@ function searchApartments(apartmentsCol) {
                     '</div>' +
                     '</div>' +
                     '</div>' +
-                    '<a href="rest/apartments/' + apartment.id + '"' + 'class="stretched-link"></a>' +
+                    '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
                     '</div>')
 
 
@@ -105,6 +105,8 @@ function searchApartments(apartmentsCol) {
 
     });
 }
+
+
 
 function resetForm() {
     $("input[name=place]").val("");
