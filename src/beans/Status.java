@@ -4,7 +4,7 @@ public enum Status {
 	CREATED,
 	REJECTED,
 	WITHDRAWAL,
-	ACEPTED,
+	ACCEPTED,
 	FINISHED
 
 }

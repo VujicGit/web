@@ -1,0 +1,71 @@
+{
+
+    "res1": {
+        "id": "res1",
+        "apartment": {
+                "id": null,
+                "type": null,
+                "numberOfRooms": 0,
+                "numberOfGuests": 0,
+                "location": null,
+                "datesForRent": null,
+                "datesForIssue": null,
+                "host": null,
+                "comments": null,
+                "images": null,
+                "price": 0.0,
+                "amenities": null,
+                "reservation": null,
+                "checkoutDate": null,
+                "checkInDate": null,
+                "status": null
+            },
+            "reservationBegins": 56122,
+            "numberOfNights": 3,
+            "price": 128,
+            "message": "pozz",
+            "guest": {
+                "username": "",
+                "password": "",
+                "name": "",
+                "surname": "",
+                "gender": null
+            },
+            "status": "WITHDRAWAL"
+     },
+       
+
+    "res2": {
+        "id": "res2",
+        "apartment": {
+                "id": null,
+                "type": null,
+                "numberOfRooms": 0,
+                "numberOfGuests": 0,
+                "location": null,
+                "datesForRent": null,
+                "datesForIssue": null,
+                "host": null,
+                "comments": null,
+                "images": null,
+                "price": 0.0,
+                "amenities": null,
+                "reservation": null,
+                "checkoutDate": null,
+                "checkInDate": null,
+                "status": null
+            },
+            "reservationBegins": 123,
+            "numberOfNights": 1,
+            "price": 990,
+            "message": "jebaci",
+            "guest": {
+                "username": "",
+                "password": "",
+                "name": "",
+                "surname": "",
+                "gender": null
+            },
+            "status": "ACEPTED"
+    }
+}
