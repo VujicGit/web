@@ -1,5 +1,7 @@
 package services;
 
+import java.util.ArrayList;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +49,7 @@ public class LoginService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_HTML)
 	public Response login(LoginDTO loginDTO) {
-
+		
 		if(!userExists(loginDTO.getUsername())) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid username or password").build();
 			
@@ -55,6 +57,7 @@ public class LoginService {
 		
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		User user = userDAO.findById(loginDTO.getUsername());
+		System.out.println(user.getUsername());
 		if(!isPasswordMatch(user.getPassword(), loginDTO.getPassword())) {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid username or password").build();
 		}
@@ -74,6 +77,20 @@ public class LoginService {
 			/*HOST*/
 		}
 		return null;
+	}
+	
+	@GET
+	@Path("/reservation/guest")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response reservationGuest() {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		if(user == null || user.getRole() != Role.GUEST) {
+			String message = "{\"errorMessage\": \"Please log in as guest to complete acton\"}";
+			return Response.status(Response.Status.UNAUTHORIZED).entity(message).build();
+		}
+		return Response.ok().build();
 	}
 	
 	@GET

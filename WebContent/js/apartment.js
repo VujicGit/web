@@ -2,36 +2,105 @@ $(document).ready(function () {
 
     var date = new Date();
 
+
+    getApartment();
+    getDatesForIssue();
+    reserveApartment();
+});
+
+
+function reserveApartment() {
+
+    let form = $("form[name=reserveForm]");
+    form.submit(function (event) {
+        event.preventDefault();
+        /*formData = {
+             id: getUrlParameter("id"),
+             startDate: new Date($("#checkInDateInput").val()),
+             nights: $("#nights").val()
+         };
+         $.ajax({
+             type: "POST",
+             url: "rest/apartments/submitReservation",
+             contentType: "application/json",
+             data: JSON.stringify(formData),
+             success: function (data, textStatus, XMLHttpRequest) {
+                 alert("prosao");
+             },
+             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                 var obj = JSON.parse(XMLHttpRequest.responseText);
+                 alert(obj.hello);
+             }
+         })*/
+
+        $.ajax({
+            type: "GET",
+            url: "rest/login/reservation/guest",
+            success: function (data, textStatus, XMLHttpRequest) {
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var obj = JSON.parse(XMLHttpRequest.responseText);
+                alert(obj.errorMessage);
+            }
+
+        })
+    });
+}
+
+
+
+function highlightDates(availableDates) {
+    var date = new Date();
     $('.date').datepicker({
-        datesDisabled: ['09/20/2020'],
         startDate: date,
         beforeShowDay: function (date) {
 
-            return highlightDates(date);
+            var calenderDate = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ('0' + date.getDate()).slice(-2) + "/" + date.getFullYear();
+            var search_index = $.inArray(calenderDate, availableDates);
+
+            if (search_index > -1) {
+                return {
+                    classes: 'highlighted-cal-dates',
+                    tooltip: 'This date is available'
+                };
+            }
+            if (search_index === -1) {
+                return false;
+            }
+
         }
     });
-    getApartment();
 
-});
-
-function highlightDates(date) {
-    calenderDate = (("0" + date.getMonth()).slice(-2)) + "/" + ('0' + date.getDate()).slice(-2) + "/" + date.getFullYear();
-
-    var availableDates = ["09/01/2020", "09/02/2020"];
-    var search_index = $.inArray(calenderDate, availableDates);
-    if (search_index > -1) {
-        return {
-            classes: 'highlighted-cal-dates',
-            tooltip: 'This date is available'
-        };
-    }
-    if (search_index === -1) {
-        return false;
-    }
 }
 
-function getAvailableDates() {
+function getDatesForIssue() {
+    var dates = [];
+    $.ajax({
+        type: "GET",
+        url: "rest/apartments/datesForIssue/" + getUrlParameter("id"),
+        success: function (data) {
+            dates = formatDates(data);
+            highlightDates(dates);
+        }
+    });
 
+
+}
+
+function formatDate(date) {
+    return ("0" + (dateToFormat.getMonth() + 1)).slice(-2) + "/" + ('0' + dateToFormat.getDate()).slice(-2) + "/" + dateToFormat.getUTCFullYear();
+}
+
+function formatDates(dates) {
+    var formatedDates = [];
+    for (let date of dates) {
+        let dateToFormat = new Date(date);
+        let formatedDate = ("0" + (dateToFormat.getMonth() + 1)).slice(-2) + "/" + ('0' + dateToFormat.getDate()).slice(-2) + "/" + dateToFormat.getUTCFullYear();
+        formatedDates.push(formatedDate);
+    }
+
+    return formatedDates;
 }
 
 function getApartment() {
@@ -60,7 +129,6 @@ function fillReservationForm() {
 
     let nightsInput = $("#nights");
     nightsInput.val(nights);
-
 
 }
 

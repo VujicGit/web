@@ -16,7 +16,7 @@
             }
         },
         "datesForRent": [61546168800000],
-        "datesForIssue": [61547378400000],
+        "datesForIssue": [1600560000000],
         "host": {
             "username": "",
             "password": "",

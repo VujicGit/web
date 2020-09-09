@@ -4,7 +4,6 @@ $(document).ready(function () {
     date.setDate(date.getDate());
     $('.input-daterange').datepicker({
         todayHighlight: true,
-        datesDisabled: ['09/20/2020'],
         startDate: date
     });
 
@@ -17,7 +16,7 @@ $(document).ready(function () {
 
     getAllApartments(apartmentsCol)
 
-
+    hideNavBarButtons();
 
     btnCancel.click(function () {
         getAllApartments(apartmentsCol);
@@ -50,6 +49,13 @@ $(document).ready(function () {
     });
 
 });
+
+function hideNavBarButtons() {
+    let logoutButton = $("#logoutButton");
+    logoutButton.hide();
+}
+
+
 
 function getAllApartments(apartmentsCol) {
     $.ajax({

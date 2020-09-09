@@ -15,7 +15,11 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(loginData),
             success: function (data, textStatus, XMLHttpRequest) {
-                location.href = XMLHttpRequest.responseText;
+                createLogoutButton();
+                if (window.location.href.includes("apartmentPage.html") != true) {
+                    location.href = XMLHttpRequest.responseText;
+                }
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 incorrectUserPassMessage(XMLHttpRequest.responseText);
@@ -25,7 +29,33 @@ $(document).ready(function () {
         });
 
     });
+
+
 });
+
+
+
+function createLogoutButton() {
+    let navbarUl = $("#navbarUl");
+
+    navbarUl.empty();
+    navbarUl.append('<li class=" nav-item nav-item-custom" id="logoutButtonLi">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" id="logoutButton">Logout</button>' +
+        '</li>');
+
+}
+
+function createLoginRegisterButtons() {
+    let navbarUl = $("#navbarUl");
+    navbarUl.empty();
+    navbarUl.append('<li class="nav-item nav-item-custom" id="registerButtonLi">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal" data-target="#LoginModal" id="loginButton">Login</button>' +
+        '</li>');
+    navbarUl.append('<li class=" nav-item nav-item-custom" id="loginButtonLI">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal data-target="#LoginModal" id="loginButton">Login</button>"' +
+        '</li>'
+    );
+}
 
 function incorrectUserPassMessage(message) {
     let loginUsername = $("#loginUsername");
