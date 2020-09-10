@@ -102,7 +102,7 @@ public class GuestDAO implements dao.cruddao.GuestDAO {
 	public boolean save() {
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(contextPath + File.separator + "data" + File.separator + "guests.json");
-		
+		System.out.println(file.getAbsolutePath());
 		try {
 			mapper.writeValue(file, guests);
 		} catch (JsonGenerationException e) {

@@ -5,7 +5,7 @@
         "name": "Petar",
         "surname": "Petrovic",
         "gender": "MALE",
-        "role": "ADMIN",
+        "role": "GUEST",
         "apartments": [],
         "reservations": []
     }
