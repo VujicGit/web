@@ -99,7 +99,6 @@ public class LoginService {
 	public Response logout() {
 		HttpSession session = request.getSession(true);
 		User user = (User) session.getAttribute("loggedInUser");
-		System.out.println(user.getUsername());
 		if(session != null && session.getAttribute("loggedInUser") != null) {
 			session.invalidate();
 		}
