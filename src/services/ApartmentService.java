@@ -156,8 +156,8 @@ public class ApartmentService {
 			apartment.getDatesForIssue().removeAll(dates);
 			guest.getReservations().add(reservation);
 			
-			apartmentDAO.update(apartment);
-			guestDAO.update(guest);
+			/*apartmentDAO.update(apartment);
+			guestDAO.update(guest);*/
 		
 			return Response.ok().build();
 		}

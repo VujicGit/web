@@ -122,6 +122,36 @@
 
     <main>
 
+        <div id="confirmReservationModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">Confirm reservation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Check-in date</h1>
+                            <p id="confirmReservationCheckInDate"></p>
+                            <h2>Check-out date</h2>
+                            <p id="confirmReservationCheckoutDate"></p>
+                            <h2>Check-in time</h2>
+                            <p id="confirmReservationCheckInTime"></p>
+                            <h2>Check-out time</h2>
+                            <p id="confirmReservationCheckoutTime"></p>
+                            <form name="confirmReservationForm" action="#" method="POST">
+                                <div class="form-group modal-form-input" id="nameInput">
+                                    <textarea class="form-control" id="message" rows="5"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary " id="confirmReservation">Confirm</button>
+                            </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="container">
@@ -191,8 +221,8 @@
 
                                         <div class="row">
 
-                                            <button type="submit"
-                                                class="btn btn-primary form-button-submit">Submit</button>
+                                            <button type="submit" class="btn btn-primary form-button-submit"
+                                                id="submitReservation">Submit</button>
 
                                         </div>
 

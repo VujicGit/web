@@ -1,11 +1,11 @@
 $(document).ready(function () {
-
     var date = new Date();
 
 
     getApartment();
     getDatesForIssue();
     reserveApartment();
+    isUserLoggedIn();
 });
 
 
@@ -37,7 +37,8 @@ function reserveApartment() {
             type: "GET",
             url: "rest/login/reservation/guest",
             success: function (data, textStatus, XMLHttpRequest) {
-
+                openConfirmReservationModal();
+                fillConfirmReservationForm();
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 var obj = JSON.parse(XMLHttpRequest.responseText);
@@ -49,6 +50,29 @@ function reserveApartment() {
 }
 
 
+
+function fillConfirmReservationForm() {
+    var checkInDate = $("#checkInDateInput").val();
+    var numberOfNights = $("#nights").val();
+    $.ajax({
+        type: "GET",
+        url: "rest/apartments/getApartment/" + getUrlParameter("id"),
+        success: function (apartment) {
+            fillReservationModal(checkInDate, numberOfNights, apartment.checkInTime, apartment.checkoutTime);
+        }
+    });
+}
+
+function fillReservationModal(checkInDate, checkOutDate, checkInTime, checkOutTime) {
+    $("#confirmReservationCheckInDate").text(checkInDate);
+    $("#confirmReservationCheckoutDate").text(checkOutDate);
+    $("#confirmReservationCheckInTime").text(checkInTime);
+    $("#confirmReservationCheckoutTime").text(checkOutTime);
+}
+
+function openConfirmReservationModal() {
+    $("#confirmReservationModal").modal('toggle');
+}
 
 function highlightDates(availableDates) {
     var date = new Date();

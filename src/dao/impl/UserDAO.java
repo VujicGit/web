@@ -130,7 +130,7 @@ public class UserDAO implements dao.cruddao.UserDAO {
 	private void loadUsers(String contextPath) {
 		BufferedReader in = null;
 		File file = new File(contextPath + File.separator + "data" + File.separator + "users.json");
-		System.out.println(file.getAbsolutePath());
+	
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<HashMap<String,User>> typeRef 
         = new TypeReference<HashMap<String,User>>() {};

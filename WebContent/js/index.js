@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    isUserLoggedIn();
     var date = new Date();
     date.setDate(date.getDate());
     $('.input-daterange').datepicker({

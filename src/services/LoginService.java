@@ -65,7 +65,9 @@ public class LoginService {
 		if(user.getRole() == Role.GUEST) {
 			GuestDAO guestDAO = (GuestDAO) ctx.getAttribute("guestDAO");
 			Guest guest = guestDAO.findById(loginDTO.getUsername());
-			request.getSession().setAttribute("loggedInUser", guest);
+			System.out.println(guest.getUsername());
+			request.getSession(true).setAttribute("loggedInUser", guest);
+			
 			return Response.ok().entity("indexproba.html").build(); //treba proslediti pocetnu stranicu odgovarajuceg korisnika
 		}
 		else if(user.getRole() == Role.ADMIN) {
@@ -83,9 +85,7 @@ public class LoginService {
 	@Path("/reservation/guest")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response reservationGuest() {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("loggedInUser");
-		
+		User user = (User) request.getSession(true).getAttribute("loggedInUser");
 		if(user == null || user.getRole() != Role.GUEST) {
 			String message = "{\"errorMessage\": \"Please log in as guest to complete acton\"}";
 			return Response.status(Response.Status.UNAUTHORIZED).entity(message).build();
@@ -97,11 +97,26 @@ public class LoginService {
 	@Path("/logout")
 	@Produces(MediaType.TEXT_HTML)
 	public Response logout() {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("loggedInUser");
+		System.out.println(user.getUsername());
 		if(session != null && session.getAttribute("loggedInUser") != null) {
 			session.invalidate();
 		}
 		return Response.ok().entity("index.html").build();
+	}
+	
+	@GET
+	@Path("/loggedIn/user")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response isUserLoggedIn() {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("loggedInUser");
+		if(session != null && session.getAttribute("loggedInUser") != null) {
+			return Response.ok().build();
+		}
+		String message = "{\"errorMessage\": \"No user logged in\"}";
+		return Response.status(Response.Status.FORBIDDEN).entity(message).build();
 	}
 	
 	private boolean userExists(String username) {
