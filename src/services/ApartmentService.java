@@ -7,7 +7,9 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -40,6 +42,16 @@ public class ApartmentService {
 	public Collection<Apartment> getAllApartments() {
 		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
 		return dao.findAll();
+	}
+	
+	@POST
+	@Path("/save")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean newApartment(Apartment apartment) {
+		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		System.out.println("Hello world");
+		return dao.add(apartment);
+		
 	}
 	
 	

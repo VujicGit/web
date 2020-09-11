@@ -21,7 +21,7 @@ public class Apartment {
 	private List<Date> datesForIssue;
 	private Host host;
 	private List<Comment> comments;
-	private List<BufferedImage> images;
+	private List<String> images;
 	private double price;
 	private LocalTime checkInTime;
 	private LocalTime checkoutTime;
@@ -37,7 +37,7 @@ public class Apartment {
 
 	public Apartment(String id, ApartmentType type, int numberOfRooms, int numberOfGuests, Location location,
 			List<Date> datesForRent, List<Date> datesForIssue, Host host, List<Comment> comments,
-			List<BufferedImage> images, double price, 
+			List<String> images, double price, 
 			ApartmentStatus apartmentStatus, List<Amenities> amenities, List<Reservation> reservation) {
 		super();
 		this.id = id;
@@ -125,11 +125,11 @@ public class Apartment {
 		this.comments = comments;
 	}
 
-	public List<BufferedImage> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 
-	public void setImages(List<BufferedImage> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 
