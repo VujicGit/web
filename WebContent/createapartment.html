@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<script src="js/bootstrap-datepicker.min.js"></script>
+
+<script src="js/createapartment.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<style>
+.btn-file {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid black;
+	margin: 0 0 10px 0;
+	background-color: #C0C0C0;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline-style: solid;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+</style>
+
+<title>Create apartment</title>
+</head>
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+			<ul class="navbar-nav navbar-ul">
+				<li class="navbar-brand"><a href="#"
+					class=" navbar-brand-custom">Booking</a></li>
+				<li class="navbar-brand"><a class="nav-link-custom" href="#"><button
+							class="btn btn-primary navbar-btn-custom">Apartments</button></a></li>
+				<li class="navbar-brand"><a class="nav-link-custom" href="#"><button
+							class="btn btn-primary navbar-btn-custom">Reservations</button></a></li>
+				<li class="navbar-brand"><a class="nav-link-custom" href="#"><button
+							class="btn btn-primary navbar-btn-custom">Users</button></a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto navbar-ul">
+				<li class="dropdown dropdown-menu-right">
+					<button class="btn btn-primary navbar-btn-custom dropdown-toggle"
+						type="button" id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">User</button>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">Create apartment</a> <a
+							class="dropdown-item" href="#">Logout</a>
+
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+
+
+	<div class="row">
+	<div class="col-4 "
+		style="padding-right: 20px; padding-left: 20px; margin-top: 50px;">
+
+		<div class="card text-white mb-3 card-custom"
+			style="max-width: 100%; background-color: #febb02; border-radius: 10px;">
+			<div class="card-body">
+				<form enctype="multipart/form-data" action="hostpage.html"
+					method="POST" id="myform">
+					<div class="container">
+						<div class="row div-search-labels">
+							<p class="search-labels">Apartment type:</p>
+						</div>
+						<div class="row">
+							<select class="form-control" id="aptype"
+								style="width: 100%; padding: 0; border: 0;">
+								<option value="FULL">FULL</option>
+								<option value="ROOM">ROOM</option>
+							</select>
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Number of rooms:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="norooms"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Number of guests:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="noguests"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Latitude:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="lat"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Longitude:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="lon"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Street:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="street"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Street number:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="num"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Place:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="place"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Zip code:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="zip"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						
+						<div class="row div-search-labels">
+							<p class="search-labels">Price per night:</p>
+						</div>
+						<div class="row">
+							<input type="text" class="form-control" id="price"
+								style="width: 100%; padding: 0; border: 0;">
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Status:</p>
+						</div>
+						<div class="row">
+							<select class="form-control" id="status"
+								style="width: 100%; padding: 0; border: 0">
+								<option value="inactive">INACTIVE</option>
+								<option value="active">ACTIVE</option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="input-daterange" id="datepicker">
+
+								<div class="row div-search-labels">
+									<p class="search-labels">Available from:</p>
+								</div>
+								<div class="row">
+									<input type="text"
+										class="input-sm form-control date-picker-input-custom float-left"
+										id="startDate" name="startDate" placeholder="mm/dd/yyyy" />
+								</div>
+								<div class="row div-search-labels">
+									<p class="search-labels">Available to:</p>
+								</div>
+								<div class="row">
+									<input type="text"
+										class="input-sm form-control date-picker-input-custom"
+										id="endDate" name="endDate" placeholder="mm/dd/yyyy" />
+								</div>
+
+							</div>
+						</div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Amenities:</p>
+						</div>
+						<div>
+							<input type="checkbox" id="wifi" name="amenities" value="wifi">
+							<label for="wifi"> Wifi</label> <input type="checkbox"
+								id="cabletv" name="amenities" value="cable tv"> <label
+								for="vehicle2"> Cable TV</label> <input type="checkbox"
+								id="washer" name="amenities" value="washer"> <label
+								for="vehicle3"> Washer</label><br> <input type="checkbox"
+								id="aircond" name="amenities" value="air conditioning"> <label
+								for="vehicle3"> Air conditioning</label> <input
+								type="checkbox" id="heating" name="amenities" value="heating">
+							<label for="vehicle3"> Heating</label> <input
+								type="checkbox" id="hotwater" name="amenities" value="hot water">
+							<label for="vehicle3"> Hot water</label><br> <input
+								type="checkbox" id="essentials" name="amenities"
+								value="essentials"> <label for="vehicle3">
+								Essentials</label> <input type="checkbox" id="crib" name="amenities"
+								value="crib"> <label for="vehicle3"> Crib</label> <input
+								type="checkbox" id="shades" name="amenities" value="shades">
+							<label for="vehicle3"> Shades</label><br> <input
+								type="checkbox" id="elevator" name="amenities" value="elevator">
+							<label for="vehicle3"> Elevator</label> <input
+								type="checkbox" id="park" name="amenities" value="parking"> <label
+								for="vehicle3"> Parking</label> <input type="checkbox"
+								id="kitchen" name="amenities" value="kitchen"> <label
+								for="vehicle3"> Kitchen</label><br> <input type="checkbox"
+								id="dishes" name="amenities" value="dishes"> <label
+								for="vehicle3"> Dishes</label> <input type="checkbox"
+								id="micro" name="amenities" value="microwave"> <label
+								for="vehicle3"> Microwave</label> <input type="checkbox"
+								id="refr" name="amenities" value="refrigerator"> <label
+								for="vehicle3"> Refrigerator</label><br>
+						</div>
+						<div class="row"></div>
+						<div class="row div-search-labels">
+							<p class="search-labels">Select images:</p>
+						</div>
+						<div class="row files" id="files1">
+							<span class="btn btn-default btn-file"> Browse <input
+								type="file" name="files1" multiple />
+							</span> <br />
+							<ul class="fileList"></ul>
+						</div>
+
+
+
+
+						<script>
+							$.fn.fileUploader = function(filesToUpload,
+									sectionIdentifier) {
+								var fileIdCounter = 0;
+
+								this
+										.closest(".files")
+										.change(
+												function(evt) {
+													var output = [];
+
+													for (var i = 0; i < evt.target.files.length; i++) {
+														fileIdCounter++;
+														var file = evt.target.files[i];
+														var fileId = sectionIdentifier
+																+ fileIdCounter;
+
+														filesToUpload.push({
+															id : fileId,
+															file : file
+														});
+
+														var removeLink = "<a class=\"removeFile\" href=\"#\" data-fileid=\"" + fileId + "\">Remove</a>";
+
+														output
+																.push(
+																		"<li><strong>",
+																		escape(file.name),
+																		"</strong> - ",
+																		file.size,
+																		" bytes. &nbsp; &nbsp; ",
+																		removeLink,
+																		"</li> ");
+													}
+													;
+
+													$(this)
+															.children(
+																	".fileList")
+															.append(
+																	output
+																			.join(""));
+
+													//reset the input to null - nice little chrome bug!
+													evt.target.value = null;
+												});
+
+								$(this)
+										.on(
+												"click",
+												".removeFile",
+												function(e) {
+													e.preventDefault();
+
+													var fileId = $(this)
+															.parent().children(
+																	"a").data(
+																	"fileid");
+
+													// loop through the files array and check if the name of that file matches FileName
+													// and get the index of the match
+													for (var i = 0; i < filesToUpload.length; ++i) {
+														if (filesToUpload[i].id === fileId)
+															filesToUpload
+																	.splice(i,
+																			1);
+													}
+
+													$(this).parent().remove();
+												});
+
+								this.clear = function() {
+									for (var i = 0; i < filesToUpload.length; ++i) {
+										if (filesToUpload[i].id
+												.indexOf(sectionIdentifier) >= 0)
+											filesToUpload.splice(i, 1);
+									}
+
+									$(this).children(".fileList").empty();
+								}
+
+								return this;
+							};
+
+							(function() {
+								var filesToUpload = [];
+
+								var files1Uploader = $("#files1").fileUploader(
+										filesToUpload, "files1");
+								var files2Uploader = $("#files2").fileUploader(
+										filesToUpload, "files2");
+								var files3Uploader = $("#files3").fileUploader(
+										filesToUpload, "files3");
+
+								$("#uploadBtn")
+										.click(
+												function(e) {
+													e.preventDefault();
+
+													var formData = new FormData();
+
+													for (var i = 0, len = filesToUpload.length; i < len; i++) {
+														formData
+																.append(
+																		"files",
+																		filesToUpload[i].file);
+													}
+
+													$
+															.ajax({
+																url : "http://requestb.in/1k0dxvs1",
+																data : formData,
+																processData : false,
+																contentType : false,
+																type : "POST",
+																success : function(
+																		data) {
+																	alert("DONE");
+
+																	files1Uploader
+																			.clear();
+																	files2Uploader
+																			.clear();
+																	files3Uploader
+																			.clear();
+																},
+																error : function(
+																		data) {
+																	alert("ERROR - "
+																			+ data.responseText);
+																}
+															});
+												});
+							})()
+						</script>
+
+					</div>
+					<input id="subbtn" type="submit" value="Create apartment"
+						class="form-control"
+						style="width: 100%; padding: 0; border: 0; background-color: #24a0ed; color: white">
+				</form>
+
+
+			</div>
+		</div>
+
+	</div>
+	</div>
+
+
+
+
+
+
+
+</body>
+</html>

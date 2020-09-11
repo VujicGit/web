@@ -114,5 +114,14 @@ public class ApartmentService {
 		return false;
 	}
 	
+	@POST
+	@Path("/save")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean newApartment(Apartment apartment) {
+		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		System.out.println("Hello world");
+		return dao.add(apartment);
+	}
+	
 	
 }

@@ -89,7 +89,7 @@
                 "surname": "",
                 "gender": null
             },
-            "status": "ACEPTED"
+            "status": "ACCEPTED"
         }],
         "checkoutDate": null,
         "checkInDate": null,
@@ -186,7 +186,7 @@
                 "surname": "",
                 "gender": null
             },
-            "status": "ACEPTED"
+            "status": "ACCEPTED"
         }],
         "checkoutDate": null,
         "checkInDate": null,

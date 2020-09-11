@@ -30,6 +30,7 @@
 
 .nav-item-custom {
     width: 120px;
+    color: white;
 }
 
 .navbar-btn-custom {
@@ -57,6 +58,18 @@
 
 .login-form-button {
     margin-left: auto;
+}
+
+
+.nav-link-custom {
+	font-size: medium;
+	color: white;
+	text-decoration: none;
+}
+
+.nav-link-custom:hover {
+	
+	text-decoration: none;
 }
 
 body {
@@ -122,10 +135,12 @@ body {
 
 .card-custom:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .error-messages {
     color: red;
     margin-left: 5px;
     margin-bottom: 0;
+
 }
