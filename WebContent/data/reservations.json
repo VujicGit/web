@@ -1,7 +1,6 @@
 {
 
     "res1": {
-        "id": "res1",
         "apartment": {
                 "id": null,
                 "type": null,
@@ -36,7 +35,6 @@
        
 
     "res2": {
-        "id": "res2",
         "apartment": {
                 "id": null,
                 "type": null,

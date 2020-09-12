@@ -4,6 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/index.js"></script>
@@ -29,16 +32,8 @@
                     <a href="#" class=" navbar-brand-custom">Booking</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto navbar-ul">
-                <li class="nav-item nav-item-custom">
-                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
-                        data-target="#SignUpModal">Sign
-                        up</button>
-                </li>
-                <li class=" nav-item nav-item-custom">
-                    <button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal"
-                        data-target="#LoginModal">Login</button>
-                </li>
+            <ul class="navbar-nav ml-auto navbar-ul" id="navbarUl">
+
             </ul>
         </nav>
         <div id="LoginModal" class="modal fade" role="dialog">

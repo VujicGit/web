@@ -15,7 +15,14 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(loginData),
             success: function (data, textStatus, XMLHttpRequest) {
-                location.href = XMLHttpRequest.responseText;
+
+                if (window.location.href.includes("apartmentPage.html") != true) {
+                    location.href = XMLHttpRequest.responseText;
+
+
+                }
+                logout();
+
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 incorrectUserPassMessage(XMLHttpRequest.responseText);
@@ -25,7 +32,58 @@ $(document).ready(function () {
         });
 
     });
+
 });
+
+function isUserLoggedIn() {
+    $.ajax({
+        type: "GET",
+        url: "rest/login/loggedIn/user",
+        cache: false,
+        success: function (data, textStatus, XMLHttpRequest) {
+            logout();
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            createLoginRegisterButtons();
+        }
+
+    })
+}
+
+function logout() {
+    let navbarUl = $("#navbarUl");
+
+    navbarUl.empty();
+    navbarUl.append('<li class=" nav-item nav-item-custom" id="logoutButtonLi">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" id="logoutButton">Logout</button>' +
+        '</li>');
+
+    $("#logoutButton").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "rest/login/logout",
+            success: function (data, textStatus, XMLHttpRequest) {
+                createLoginRegisterButtons();
+            }
+        })
+    })
+
+
+}
+
+
+function createLoginRegisterButtons() {
+    let navbarUl = $("#navbarUl");
+    navbarUl.empty();
+    navbarUl.append('<li class="nav-item nav-item-custom" id="registerButtonLi">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal" data-target="#SignUpModal" id="registerButton">Register</button>' +
+        '</li>');
+    navbarUl.append('<li class=" nav-item nav-item-custom" id="loginButtonLI">' +
+        '<button type="button" class="btn btn-primary navbar-btn-custom" data-toggle="modal" data-target="#LoginModal" id="loginButton">Login</button>' +
+        '</li>'
+    );
+}
 
 function incorrectUserPassMessage(message) {
     let loginUsername = $("#loginUsername");

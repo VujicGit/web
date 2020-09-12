@@ -78,6 +78,7 @@ public class UserDAO implements dao.cruddao.UserDAO {
 
 	@Override
 	public boolean existsById(String id) {
+		loadUsers(contextPath);
 		return users.containsKey(id);
 	}
 
@@ -96,15 +97,14 @@ public class UserDAO implements dao.cruddao.UserDAO {
 
 	@Override
 	public User findById(String id) {
+		loadUsers(contextPath);
 		return users.get(id);
 	}
 
 	@Override
 	public boolean save() {
-		System.out.println("Usao u cuvanje");
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(contextPath + File.separator + "data" + File.separator + "users.json");
-		System.out.println(file.getAbsolutePath());
 		
 		try {
 			mapper.writeValue(file, users);
@@ -130,10 +130,11 @@ public class UserDAO implements dao.cruddao.UserDAO {
 	private void loadUsers(String contextPath) {
 		BufferedReader in = null;
 		File file = new File(contextPath + File.separator + "data" + File.separator + "users.json");
+	
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<HashMap<String,User>> typeRef 
         = new TypeReference<HashMap<String,User>>() {};
-        
+
 		try {
 			in = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {

@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Reservation {
 	
-	private String id;
 	private Apartment apartment;
 	private Date reservationBegins;
 	private int numberOfNights;
@@ -18,10 +17,9 @@ public class Reservation {
 		super();
 	}
 	
-	public Reservation(String id,Apartment apartment, Date reservationBegins, int numberOfNights, double price, String message,
+	public Reservation(Apartment apartment, Date reservationBegins, int numberOfNights, double price, String message,
 			Guest guest, Status status) {
 		super();
-		this.id = id;
 		this.apartment = apartment;
 		this.reservationBegins = reservationBegins;
 		this.numberOfNights = numberOfNights;
@@ -100,14 +98,6 @@ public class Reservation {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public boolean isDeleted() {
