@@ -4,6 +4,7 @@ public class Amenities {
 	
 	private String id;
 	private String name;
+	private boolean deleted;
 	public Amenities() {
 		super();
 	}
@@ -11,6 +12,7 @@ public class Amenities {
 		super();
 		this.id = id;
 		this.name = name;
+		this.deleted = false;
 	}
 	public String getId() {
 		return id;
@@ -20,6 +22,12 @@ public class Amenities {
 	}
 	public String getName() {
 		return name;
+	}
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	public void setName(String name) {
 		this.name = name;

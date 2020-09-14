@@ -5,12 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -18,126 +15,107 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.Amenities;
 import beans.Apartment;
-import beans.Reservation;
 
-public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
-
-	private HashMap<String, Apartment> apartments;
+public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
+	
+	private HashMap<String, Amenities> amenities;
 	private String contextPath;
-
-	public ApartmentDAO() {
-
+	
+	public AmenitiesDAO() {
+		
 	}
-
-	public ApartmentDAO(String contextPath) {
-		this.contextPath = contextPath;
-		loadApartments(contextPath);
+	
+	public AmenitiesDAO(String contextPath) {
+		
 	}
-
 	@Override
 	public int count() {
-		ArrayList<Apartment> apartmentsList = new ArrayList<Apartment>(findAll());
-		return apartmentsList.size();
-
+		ArrayList<Amenities> amenitiesList = new ArrayList<Amenities>(findAll());
+		return amenities.size();
 	}
 
 	@Override
-	public boolean add(Apartment entity) {
+	public boolean add(Amenities entity) {
 		if (existsById(entity.getId())) {
 			return false;
 		}
-		apartments.put(entity.getId(), entity);
+		amenities.put(entity.getId(), entity);
 		save();
 		return true;
 	}
 
 	@Override
-	public boolean update(Apartment entity) {
+	public boolean update(Amenities entity) {
 		if (!existsById(entity.getId()) || isDeleted(entity.getId())) {
 			return false;
 		}
-		apartments.put(entity.getId(), entity);
+		amenities.put(entity.getId(), entity);
 		
 		save();
 		return true;
-
 	}
 
 	@Override
-	public boolean delete(Apartment entity) {
+	public boolean delete(Amenities entity) {
 		if (!existsById(entity.getId()) || isDeleted(entity.getId())) {
 			return false;
 		}
-		Apartment apartment = findById(entity.getId());
-		apartment.setDeleted(true);
-		apartments.put(apartment.getId(), apartment);
+		Amenities amenity = findById(entity.getId());
+		amenity.setDeleted(true);
+		amenities.put(amenity.getId(), amenity);
 		save();
 		return true;
-
 	}
 
 	@Override
 	public void deleteAll() {
-		apartments.clear();
-
+		amenities.clear();
 	}
 
+	@Override
 	public boolean deleteById(String id) {
 		if (!existsById(id)) {
 			return false;
 		}
-		Apartment apartment = findById(id);
-		apartment.setDeleted(true);
+		Amenities amenities = findById(id);
+		amenities.setDeleted(true);
 		save();
 		return true;
-
 	}
 
 	@Override
 	public boolean existsById(String id) {
-		if(isDeleted(id) || !apartments.containsKey(id)) {
+		if(isDeleted(id) || !amenities.containsKey(id)) {
 			return false;
 		}
 		return true;
-		
 	}
 
 	@Override
 	public boolean isDeleted(String id) {
-		Apartment apartment = findById(id);
-		return apartment.isDeleted();
+		Amenities amenities = findById(id);
+		return amenities.isDeleted();
 	}
 
 	@Override
-	public Collection<Apartment> findAll() {
-		// TODO Auto-generated method stub
-
-		loadApartments(contextPath);
-		Collection<Apartment> apartmentsList = apartments.values();
-		for (Apartment apartment : apartmentsList) {
-			if (isDeleted(apartment.getId())) {
-				apartmentsList.remove(apartment);
-			}
-		}
-		return apartmentsList;
-
+	public Collection<Amenities> findAll() {
+		return amenities.values();
 	}
 
 	@Override
-	public Apartment findById(String id) {
-		return apartments.get(id);
+	public Amenities findById(String id) {
+		return amenities.get(id);
 	}
 
 	@Override
-
 	public boolean save() {
-
 		ObjectMapper mapper = new ObjectMapper();
-		File file = new File(contextPath + File.separator + "data" + File.separator + "apartments.json");
+		File file = new File(contextPath + File.separator + "data" + File.separator + "amenities.json");
 		System.out.println(file.getPath());
 		try {
-			mapper.writeValue(file, apartments);
+			mapper.writeValue(file, amenities);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,14 +130,16 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 	}
 
 	@Override
-	public boolean saveAll(Collection<Apartment> entities) {
+	public boolean saveAll(Collection<Amenities> entities) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	private void loadApartments(String contextPath) {
+	public void loadAmenities(String contextPath) {
+		
 		BufferedReader in = null;
-		File file = new File(contextPath + File.separator + "data" + File.separator + "apartments.json");
+		File file = new File(contextPath + File.separator + "data" + File.separator + "amenities.json");
+
 
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<HashMap<String, Apartment>> typeRef = new TypeReference<HashMap<String, Apartment>>() {
@@ -173,7 +153,7 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 		}
 
 		try {
-			apartments = mapper.readValue(in, typeRef);
+			amenities = mapper.readValue(in, typeRef);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,7 +164,6 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
-
 }
