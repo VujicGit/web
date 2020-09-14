@@ -95,6 +95,10 @@ public class ApartmentService {
 				apartments.remove(apartment);
 			}
 
+			if (!checkDates(apartment, searchDTO.getCheckinDate(), searchDTO.getCheckoutDate())) {
+				apartments.remove(apartment);
+			}
+
 		}
 
 		return apartments;
@@ -152,8 +156,6 @@ public class ApartmentService {
 
 			Reservation reservation = new Reservation(apartment, startDate, nights, price, message, guest,
 					beans.Status.CREATED);
-			
-
 
 			apartment.getReservation().add(reservation);
 			apartment.getDatesForIssue().removeAll(dates);
@@ -161,8 +163,6 @@ public class ApartmentService {
 
 			apartmentDAO.update(apartment);
 			guestDAO.update(guest);
-			
-			
 
 			return Response.ok().build();
 		}
@@ -190,6 +190,8 @@ public class ApartmentService {
 			dates.add(result);
 			calendar.add(Calendar.DATE, 1);
 		}
+
+		dates.add(endDate);
 
 		return dates;
 	}
@@ -228,12 +230,12 @@ public class ApartmentService {
 			return false;
 		}
 
-		/*if (isSubarray(datesForIssue, dates)) {
-			return true;
-		}*/
-		
+		/*
+		 * if (isSubarray(datesForIssue, dates)) { return true; }
+		 */
+
 		for (Date date : dates) {
-			if(!datesForIssue.contains(date)) {
+			if (!datesForIssue.contains(date)) {
 				return false;
 			}
 		}
@@ -274,6 +276,23 @@ public class ApartmentService {
 		return place;
 	}
 
+	private boolean checkDates(Apartment apartment, Date startDate, Date endDate) {
+		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+
+		Apartment apartmentToCheck = apartmentDAO.findById(apartment.getId());
+
+		ArrayList<Date> datesForIssue = (ArrayList<Date>) apartmentToCheck.getDatesForIssue();
+
+		for (Date dateForIssue : datesForIssue) {
+
+			if ((dateForIssue.compareTo(startDate) > 0 || dateForIssue.compareTo(startDate) == 0)
+					&& (dateForIssue.compareTo(endDate) < 0 || dateForIssue.compareTo(endDate) == 0)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private boolean equalsByPlace(Apartment apartment, SearchDTO searchDTO) {
 		return getPlace(apartment).toLowerCase().equals(searchDTO.getLocation().toLowerCase());
 	}
@@ -298,7 +317,7 @@ public class ApartmentService {
 		}
 		return false;
 	}
-	
+
 	@POST
 	@Path("/save")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -307,6 +326,5 @@ public class ApartmentService {
 		System.out.println("Hello world");
 		return dao.add(apartment);
 	}
-	
-	
+
 }
