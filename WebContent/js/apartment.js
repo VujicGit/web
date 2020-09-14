@@ -6,6 +6,7 @@ $(document).ready(function () {
     getDatesForIssue();
     reserveApartment();
     isUserLoggedIn();
+    confirmReservation();
 });
 
 
@@ -49,6 +50,31 @@ function reserveApartment() {
     });
 }
 
+function confirmReservation() {
+    $("form[name=confirmReservationForm]").submit(function (event) {
+        event.preventDefault();
+
+        formData = {
+            id: getUrlParameter("id"),
+            startDate: new Date($("#confirmReservationCheckInDate").val()),
+            nights: $("#confirmReservationCheckoutDate").val(),
+            price: 0,
+            message: $("#message").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: "rest/apartments/submitReservation",
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            success: function (data, textStatus, XMLHttpRequest) {
+                alert("Reservation created successfull");
+                getDatesForIssue();
+                $('.date').datepicker('update', '');
+
+            }
+        });
+    })
+}
 
 
 function fillConfirmReservationForm() {
@@ -58,16 +84,18 @@ function fillConfirmReservationForm() {
         type: "GET",
         url: "rest/apartments/getApartment/" + getUrlParameter("id"),
         success: function (apartment) {
-            fillReservationModal(checkInDate, numberOfNights, apartment.checkInTime, apartment.checkoutTime);
+            var totalPrice = apartment.price * parseInt(numberOfNights);
+            fillReservationModal(checkInDate, numberOfNights, apartment.checkInTime, apartment.checkoutTime, totalPrice);
         }
     });
 }
 
-function fillReservationModal(checkInDate, checkOutDate, checkInTime, checkOutTime) {
-    $("#confirmReservationCheckInDate").text(checkInDate);
-    $("#confirmReservationCheckoutDate").text(checkOutDate);
-    $("#confirmReservationCheckInTime").text(checkInTime);
-    $("#confirmReservationCheckoutTime").text(checkOutTime);
+function fillReservationModal(checkInDate, checkOutDate, checkInTime, checkOutTime, totalPrice) {
+    $("#confirmReservationCheckInDate").val(checkInDate);
+    $("#confirmReservationCheckoutDate").val(checkOutDate);
+    $("#confirmReservationCheckInTime").val(checkInTime);
+    $("#confirmReservationCheckoutTime").val(checkOutTime);
+    $("#confirmReservationTotalPrice").val(totalPrice);
 }
 
 function openConfirmReservationModal() {

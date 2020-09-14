@@ -10,8 +10,14 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,property="@id", scope = Apartment.class)
+
 public class Apartment {
-	
+
 	private String id;
 	private ApartmentType type;
 	private int numberOfRooms;
@@ -29,8 +35,7 @@ public class Apartment {
 	private List<Amenities> amenities;
 	private List<Reservation> reservation;
 	private boolean deleted;
-	
-	
+
 	public Apartment() {
 		super();
 	}
@@ -59,6 +64,13 @@ public class Apartment {
 
 		this.deleted = false;
 
+	}
+
+	public Apartment(Apartment apartment) {
+		this(apartment.getId(), apartment.getType(), apartment.getNumberOfRooms(), apartment.getNumberOfGuests(),
+				apartment.getLocation(), apartment.getDatesForRent(), apartment.getDatesForIssue(), apartment.getHost(),
+				apartment.getComments(), apartment.getImages(), apartment.getPrice(), apartment.getStatus(),
+				apartment.getAmenities(), apartment.getReservation());
 	}
 
 	public ApartmentType getType() {

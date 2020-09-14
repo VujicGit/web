@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -17,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Apartment;
+import beans.Reservation;
 
 public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 
@@ -55,6 +58,7 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 			return false;
 		}
 		apartments.put(entity.getId(), entity);
+		
 		save();
 		return true;
 
