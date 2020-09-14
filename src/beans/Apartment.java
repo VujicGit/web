@@ -10,8 +10,14 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,property="@id", scope = Apartment.class)
+
 public class Apartment {
-	
+
 	private String id;
 	private ApartmentType type;
 	private int numberOfRooms;
@@ -29,16 +35,15 @@ public class Apartment {
 	private List<Amenities> amenities;
 	private List<Reservation> reservation;
 	private boolean deleted;
-	
-	
+
 	public Apartment() {
 		super();
 	}
 
 	public Apartment(String id, ApartmentType type, int numberOfRooms, int numberOfGuests, Location location,
 			List<Date> datesForRent, List<Date> datesForIssue, Host host, List<Comment> comments,
-			List<BufferedImage> images, double price, 
-			ApartmentStatus apartmentStatus, List<Amenities> amenities, List<Reservation> reservation) {
+			List<BufferedImage> images, double price, ApartmentStatus apartmentStatus, List<Amenities> amenities,
+			List<Reservation> reservation) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -57,6 +62,13 @@ public class Apartment {
 		this.amenities = amenities;
 		this.reservation = reservation;
 		this.deleted = false;
+	}
+
+	public Apartment(Apartment apartment) {
+		this(apartment.getId(), apartment.getType(), apartment.getNumberOfRooms(), apartment.getNumberOfGuests(),
+				apartment.getLocation(), apartment.getDatesForRent(), apartment.getDatesForIssue(), apartment.getHost(),
+				apartment.getComments(), apartment.getImages(), apartment.getPrice(), apartment.getStatus(),
+				apartment.getAmenities(), apartment.getReservation());
 	}
 
 	public ApartmentType getType() {
@@ -194,10 +206,5 @@ public class Apartment {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	
-	
-	
-	
-	
 
 }

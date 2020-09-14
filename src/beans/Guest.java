@@ -3,6 +3,10 @@ package beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,property="@id", scope = Guest.class)
 public class Guest extends User {
 	private List<Apartment> apartments;
 	private List<Reservation> reservations;
@@ -15,6 +19,10 @@ public class Guest extends User {
 		super();
 		this.apartments = apartments;
 		this.reservations = reservations;
+	}
+	
+	public Guest(Guest guest) {
+		this(guest.getApartments(), guest.getReservations());
 	}
 	
 	public Guest(String username, String password, String name, String surname, Gender gender, Role role) {
