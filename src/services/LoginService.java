@@ -127,4 +127,19 @@ public class LoginService {
 		return userPassword.toLowerCase().equals(loginDTOPassword.toLowerCase());
 	}
 	
+	@GET
+	@Path("/loggedIn/admin")
+	public Response isAdminLoggedIn() {
+		System.out.println("Usao");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("loggedInUser");
+		if(session != null && session.getAttribute("loggedInUser") != null && user.getRole() == Role.ADMIN) {
+			return Response.ok().build();
+		}
+		
+		return Response.status(Response.Status.BAD_REQUEST).build();
+	}
+	
+	
+	
 }

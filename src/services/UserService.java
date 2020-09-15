@@ -49,34 +49,34 @@ public class UserService {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
 		return userDAO.findAll();
 	}
-	
+
 	@POST
 	@Path("/search")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<User> search(String text) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Collection<User> search(SearchUserDTO searchUserDTO) {
 		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
-		
-		ArrayList<User> users = (ArrayList<User>) userDAO.findAll();
-		
-		if(text.equals("")) {
+		String text = searchUserDTO.getText();
+		ArrayList<User> users = new ArrayList<User>(userDAO.findAll());
+
+		if (text.equals("")) {
 			return users;
 		}
+		
+	
+		
+		System.out.println(text);
 		for (User user : new ArrayList<User>(users)) {
-			if(!equalsByUsername(user, text)) {
+			if (!equalsByUsername(user, text) && !equalsByName(user, text) && !equalsBySurname(user, text)
+					&& !equalsByRole(user, text) && !equalsByGender(user, text)) {
 				users.remove(user);
 			}
-			if(!equalsByName(user, text)) {
-				users.remove(user);
-			}
-			if(!equalsBySurname(user, text)) {
-				users.remove(user);
-			}
-			if(!equalsByRole(user, text)) {
-				users.remove(user);
-			}
-			if(!equalsByGender(user, text)) {
-				users.remove(user);
-			}
+			/*
+			 * if(!equalsByName(user, text)) { users.remove(user); }
+			 * if(!equalsBySurname(user, text)) { users.remove(user); }
+			 * if(!equalsByRole(user, text)) { users.remove(user); }
+			 * if(!equalsByGender(user, text)) { users.remove(user); }
+			 */
 		}
 		return users;
 	}
@@ -84,21 +84,21 @@ public class UserService {
 	private boolean equalsByUsername(User user, String text) {
 		return user.getUsername().toLowerCase().equals(text.toLowerCase());
 	}
-	
+
 	private boolean equalsByName(User user, String text) {
 		return user.getName().toLowerCase().equals(text.toLowerCase());
 	}
-	
+
 	private boolean equalsBySurname(User user, String text) {
 		return user.getSurname().toLowerCase().equals(text.toLowerCase());
 	}
-	
+
 	private boolean equalsByRole(User user, String text) {
-		return user.getRole().equals(text.toLowerCase());
+		return user.getRole().toString().toLowerCase().equals(text.toLowerCase());
 	}
-	
+
 	private boolean equalsByGender(User user, String text) {
-		return user.getGender().equals(text.toLowerCase());
+		return user.getGender().toString().toLowerCase().equals(text.toLowerCase());
 	}
-	
+
 }
