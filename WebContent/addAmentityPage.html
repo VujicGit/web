@@ -12,6 +12,7 @@
     <script src="js/index.js"></script>
     <script src="js/registration.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/amentity.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker.min.js"></script>
@@ -31,18 +32,20 @@
                 <li class="navbar-brand">
                     <a href="index.html" class=" navbar-brand-custom">Booking</a>
                 </li>
-            </ul>
-            <li class="nav-item nav-item-custom">
-                <a href="usersPage.html">
-                    <button type="button" class="btn btn-primary navbar-btn-custom">Users</button>
-                </a>
-            </li>
-            <li class=" nav-item nav-item-custom">
+                <li class="nav-item nav-item-custom">
+                    <a href="usersPage.html">
+                        <button type="button" class="btn btn-primary navbar-btn-custom">Users</button>
+                    </a>
+                </li>
+                <li class=" nav-item nav-item-custom">
 
-                <a href="addAmentityPage.html">
-                    <button type="button" class="btn btn-primary navbar-btn-custom">Add amentity</button>
-                </a>
-            </li>
+                    <a href="addAmentityPage.html">
+                        <button type="button" class="btn btn-primary navbar-btn-custom">Add amentity</button>
+                    </a>
+                </li>
+                </li>
+            </ul>
+
             <ul class="navbar-nav ml-auto navbar-ul" id="navbarUl">
 
 
@@ -128,6 +131,18 @@
     </header>
 
     <main>
+        <div class="row" style="padding-top: 95px; padding-left: 17px;">
+            <div class="col-4">
+                <form action="#" method="GET" name="addAmentityForm">
+                    <input class="form-control" type="text" placeholder="Name" aria-label="Search" id="addAmentityInput"
+                        style="padding-bottom: 20px;">
+
+                    <button type="submit" class="btn btn-primary " style="padding-top: 20px;">Confirm</button>
+                </form>
+            </div>
+
+        </div>
+
 
 
 

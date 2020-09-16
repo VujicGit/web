@@ -28,16 +28,19 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 	}
 	
 	public AmenitiesDAO(String contextPath) {
-		
+		this.contextPath = contextPath;
+		loadAmenities(contextPath);
 	}
 	@Override
 	public int count() {
+		loadAmenities(contextPath);
 		ArrayList<Amenities> amenitiesList = new ArrayList<Amenities>(findAll());
 		return amenities.size();
 	}
 
 	@Override
 	public boolean add(Amenities entity) {
+		loadAmenities(contextPath);
 		if (existsById(entity.getId())) {
 			return false;
 		}
@@ -48,6 +51,7 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 
 	@Override
 	public boolean update(Amenities entity) {
+		loadAmenities(contextPath);
 		if (!existsById(entity.getId()) || isDeleted(entity.getId())) {
 			return false;
 		}
@@ -59,6 +63,7 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 
 	@Override
 	public boolean delete(Amenities entity) {
+		loadAmenities(contextPath);
 		if (!existsById(entity.getId()) || isDeleted(entity.getId())) {
 			return false;
 		}
@@ -71,11 +76,13 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 
 	@Override
 	public void deleteAll() {
+		loadAmenities(contextPath);
 		amenities.clear();
 	}
 
 	@Override
 	public boolean deleteById(String id) {
+		loadAmenities(contextPath);
 		if (!existsById(id)) {
 			return false;
 		}
@@ -87,7 +94,8 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 
 	@Override
 	public boolean existsById(String id) {
-		if(isDeleted(id) || !amenities.containsKey(id)) {
+		loadAmenities(contextPath);
+		if(!amenities.containsKey(id)) {
 			return false;
 		}
 		return true;
@@ -95,17 +103,20 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 
 	@Override
 	public boolean isDeleted(String id) {
-		Amenities amenities = findById(id);
-		return amenities.isDeleted();
+		loadAmenities(contextPath);
+		Amenities amentity = findById(id);
+		return amentity.isDeleted();
 	}
 
 	@Override
 	public Collection<Amenities> findAll() {
+		loadAmenities(contextPath);
 		return amenities.values();
 	}
 
 	@Override
 	public Amenities findById(String id) {
+		loadAmenities(contextPath);
 		return amenities.get(id);
 	}
 
@@ -140,9 +151,9 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 		BufferedReader in = null;
 		File file = new File(contextPath + File.separator + "data" + File.separator + "amenities.json");
 
-
+		System.out.println(file.getPath());
 		ObjectMapper mapper = new ObjectMapper();
-		TypeReference<HashMap<String, Apartment>> typeRef = new TypeReference<HashMap<String, Apartment>>() {
+		TypeReference<HashMap<String, Amenities>> typeRef = new TypeReference<HashMap<String, Amenities>>() {
 		};
 
 		try {
@@ -164,6 +175,7 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 }

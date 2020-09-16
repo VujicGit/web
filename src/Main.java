@@ -38,22 +38,18 @@ public class Main {
 	public static void main(String[] args) {
 		
 
-		User user = new User("pera", "pera123", "Petar", "Petrovic", Gender.MALE, Role.ADMIN);
+		Amenities amenity = new Amenities("1", "tv");
 		
-		HashMap<String, User> mapUser = new HashMap<String, User>();
-		mapUser.put(user.getUsername(), user);
+		HashMap<String, Amenities> mapUser = new HashMap<String, Amenities>();
+		mapUser.put(amenity.getId(), amenity);
 
 		ObjectMapper mapperUser = new ObjectMapper();
 
 		
-		Guest guest = new Guest(user.getUsername(), user.getPassword(), user.getName(), user.getSurname(), user.getGender(), user.getRole());
-		HashMap<String, Guest> mapGuest = new HashMap<String, Guest>();
-		mapGuest.put(guest.getUsername(), guest);
-		
-		ObjectMapper mapperGuest = new ObjectMapper();
+	
 		
 		try {
-			mapperGuest.writeValue(Paths.get("WebContent\\data\\guests.json").toFile(), mapGuest);
+			mapperUser.writeValue(Paths.get("WebContent\\data\\amenities.json").toFile(), mapUser);
 		} catch (JsonGenerationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -68,7 +64,7 @@ public class Main {
 		
 		
 		// convert map to JSON file
-		try {
+		/*try {
 			mapperUser.writeValue(Paths.get("WebContent\\data\\users.json").toFile(), mapUser);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
@@ -80,14 +76,14 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		*/
 		ObjectMapper mapper2 = new ObjectMapper();
-		HashMap<String, User> map2 = new HashMap<String, User>();
-		TypeReference<HashMap<String, User>> typeRef = new TypeReference<HashMap<String, User>>() {
+		HashMap<String, Amenities> map2 = null;
+		TypeReference<HashMap<String, Amenities>> typeRef = new TypeReference<HashMap<String, Amenities>>() {
 		};
 		// convert JSON file to map
 		try {
-			map2 = mapper2.readValue(Paths.get("WebContent\\data\\users.json").toFile(), typeRef);
+			map2 = mapper2.readValue(Paths.get("WebContent\\data\\amenities.json").toFile(), typeRef);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,7 +94,9 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(map2.get("pera").getName());
+		
+		System.out.println(map2.get("1").getId());
+		
 		
 
 	}

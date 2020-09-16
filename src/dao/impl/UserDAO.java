@@ -40,6 +40,7 @@ public class UserDAO implements dao.cruddao.UserDAO {
 
 	@Override
 	public boolean add(User entity) {
+		loadUsers(contextPath);
 		if(existsById(entity.getUsername())) {
 			return false;
 		}
@@ -50,6 +51,7 @@ public class UserDAO implements dao.cruddao.UserDAO {
 
 	@Override
 	public boolean update(User entity) {
+		loadUsers(contextPath);
 		if(!existsById(entity.getUsername())) {
 			return false;
 		}

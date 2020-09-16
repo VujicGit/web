@@ -55,17 +55,18 @@ public class AmenitiesService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addAmenity(AmenityDTO amenityDTO) {
 		AmenitiesDAO amenitiesDAO = (AmenitiesDAO) ctx.getAttribute("amenitiesDAO");
-	
-		if(amenitiesDAO.existsById(amenityDTO.getId())) {
+		String id = "1";
+		if(amenitiesDAO.existsById(id) && amenitiesDAO.isDeleted(id) == false) {
 			String message = "{\"errorMessage\": \"Amenity already exists\"}";
 			return Response.status(Response.Status.BAD_REQUEST).entity(message).build();
 		}
 		
-		amenitiesDAO.add(new Amenities(amenityDTO.getId(), amenityDTO.getName()));
+		amenitiesDAO.add(new Amenities(id, amenityDTO.getName()));
 		return Response.ok().build();
 	}
 	
-	@POST
+	
+	/*@POST
 	@Path("/remove")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -108,4 +109,5 @@ public class AmenitiesService {
 		String message = "{\"errorMessage\": \"Can not update amenity\"}";
 		return Response.status(Response.Status.BAD_REQUEST).entity(message).build();
 	}
+	*/
 }
