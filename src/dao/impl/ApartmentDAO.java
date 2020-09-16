@@ -135,7 +135,6 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(contextPath + File.separator + "data" + File.separator + "apartments.json");
-		System.out.println(file.getPath());
 		try {
 			mapper.writeValue(file, apartments);
 		} catch (JsonGenerationException e) {

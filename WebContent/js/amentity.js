@@ -71,9 +71,10 @@ function createTable(amenities) {
     });
 
     $("#tabela tr td button.deleteAmentity").click(function () {
+        var val = $(this).attr("value");
         $.ajax({
             type: "POST",
-            url: "rest/amenities/remove/" + ($("#tabela tr td button.btn").attr("value")).toString(),
+            url: "rest/amenities/remove/" + val,
             success: function (amenities) {
                 getAllAmenities();
             }

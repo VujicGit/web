@@ -144,7 +144,7 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 	public boolean save() {
 		ObjectMapper mapper = new ObjectMapper();
 		File file = new File(contextPath + File.separator + "data" + File.separator + "amenities.json");
-		System.out.println(file.getPath());
+
 		try {
 			mapper.writeValue(file, amenities);
 		} catch (JsonGenerationException e) {
@@ -171,7 +171,6 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 		BufferedReader in = null;
 		File file = new File(contextPath + File.separator + "data" + File.separator + "amenities.json");
 
-		System.out.println(file.getPath());
 		ObjectMapper mapper = new ObjectMapper();
 		TypeReference<HashMap<String, Amenities>> typeRef = new TypeReference<HashMap<String, Amenities>>() {
 		};
@@ -226,7 +225,7 @@ public class AmenitiesDAO implements dao.cruddao.AmenitiesDAO {
 	public void saveGeneratedId(String id) {
 		File file = new File(contextPath + File.separator + "data" + File.separator + "amenitiesId.txt");
 		PrintWriter writer = null;
-		
+
 		try {
 			writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
 		} catch (FileNotFoundException e) {
