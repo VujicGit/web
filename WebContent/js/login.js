@@ -35,6 +35,23 @@ $(document).ready(function () {
 
 });
 
+function isAdminLoggedIn() {
+    $.ajax({
+        type: "GET",
+        url: "rest/login/loggedIn/admin",
+        cache: false,
+        success: function (data, textStatus, XMLHttpRequest) {
+
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            var obj = JSON.parse(XMLHttpRequest.responseText);
+            window.location.href = obj.href;
+        }
+
+    });
+}
+
 function isUserLoggedIn() {
     $.ajax({
         type: "GET",
@@ -48,7 +65,7 @@ function isUserLoggedIn() {
             createLoginRegisterButtons();
         }
 
-    })
+    });
 }
 
 function logout() {
@@ -65,6 +82,7 @@ function logout() {
             url: "rest/login/logout",
             success: function (data, textStatus, XMLHttpRequest) {
                 createLoginRegisterButtons();
+                window.location.href = "index.html";
             }
         })
     })
