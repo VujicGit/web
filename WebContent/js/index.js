@@ -101,12 +101,13 @@ function sortApartments(apartmentsCol) {
 }
 
 function createApartmentCards(apartments, apartmentsCol) {
+    
     apartmentsCol.empty();
             for (let apartment of apartments) {
                 apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
-                    '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
+                    '<img src="' + apartment.images[0] + '" ' + 'style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
                     '</div>' +
                     '<div class="col-sm-7">' +
                     '<div class="card-body">' +
