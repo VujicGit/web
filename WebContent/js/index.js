@@ -20,8 +20,6 @@ $(document).ready(function () {
 
     btnCancel.click(function () {
         getAllApartments(apartmentsCol);
-        let date = $('.input-daterange input').datepicker('getDate');
-        alert(date);
         resetForm();
 
 
@@ -38,7 +36,9 @@ $(document).ready(function () {
             numberOfRooms: $("input[name=rooms]").val(),
             numberOfGuests: $("input[name=guests]").val()
         }
-        if (checkFormData(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests) !== true) {
+        let inputStartDate = $("input[name=startDate]").val();
+        let inputEndDate = $("input[name=endDate]").val();
+        if (checkFormData(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests, inputStartDate, inputEndDate) !== true) {
             return;
         }
         if (checkForReset(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests, searchData.checkinDate, searchData.checkoutDate)) {
@@ -47,6 +47,8 @@ $(document).ready(function () {
 
         searchApartments(apartmentsCol);
     });
+
+    sortApartments(apartmentsCol);
 
 });
 
@@ -64,7 +66,7 @@ function getAllApartments(apartmentsCol) {
         success: function (apartments) {
             apartmentsCol.empty();
             for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom" style="width: 50rem; margin-top: 100px;">' +
+                apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
                     '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
@@ -97,7 +99,7 @@ function searchApartments(apartmentsCol) {
         success: function (apartments) {
             apartmentsCol.empty();
             for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-top: 100px;">' +
+                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
                     '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
@@ -119,7 +121,39 @@ function searchApartments(apartmentsCol) {
     });
 }
 
+function sortApartments(apartmentsCol) {
+    let sortSelection = $("#sort");
+    sortSelection.change(function() {
+       let selectedOptionValue = $("#sort").val();
 
+        $.ajax({
+            type: "POST",
+            url: "rest/apartments/sort/" + selectedOptionValue,
+            success: function(apartments) {
+                apartmentsCol.empty();
+                for (let apartment of apartments) {
+                    apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
+                        '<div class="row no-gutters" style="border-radius: 25px;">' +
+                        '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
+                        '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
+                        '</div>' +
+                        '<div class="col-sm-7">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + apartment.location.address.place + '</h5>' +
+                        '<p class="card-text">' + apartment.price + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
+                        '</div>')
+    
+    
+                }
+            } 
+        
+       });
+    });
+}
 
 function resetForm() {
     $("input[name=place]").val("");
@@ -192,12 +226,24 @@ function checkGuests(guests) {
     return false;
 }
 
-function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests) {
+function checkDate(startDate, endDate) {
+  
+
+    if(startDate.toString() === "" || endDate.toString() === "") {
+    
+        return false;
+    }
+
+    return true;
+}
+
+function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests, startDate, endDate) {
     let placeState = false;
     let minPriceState = false;
     let maxPriceState = false;
     let numberOfRoomsState = false;
     let numberOfGuestsState = false;
+    let date = false;
 
     if (checkPlace(place)) {
         placeState = true;
@@ -213,6 +259,9 @@ function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests)
     }
     if (checkGuests(numberOfGuests)) {
         numberOfGuestsState = true;
+    }
+    if(checkDate(startDate, endDate)) {
+        date = true;
     }
     if (placeState && minPriceState && maxPriceState && numberOfRoomsState && numberOfGuestsState) {
 

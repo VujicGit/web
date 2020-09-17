@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Apartment;
+import beans.ApartmentStatus;
 import beans.Reservation;
 
 public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
@@ -184,6 +186,19 @@ public class ApartmentDAO implements dao.cruddao.ApartmentDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public Collection<Apartment> getAllActiveApartments() {
+		ArrayList<Apartment> apartments = new ArrayList<Apartment>(findAll());
+		ArrayList<Apartment> activeApartments = new ArrayList<Apartment>();
+		for(Apartment apartment : apartments) {
+			if(apartment.getStatus() == ApartmentStatus.ACTIVE) {
+				activeApartments.add(apartment);
+			}
+		}
+		
+		return activeApartments;
 	}
 
 }
