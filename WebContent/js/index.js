@@ -64,26 +64,7 @@ function getAllApartments(apartmentsCol) {
         type: "GET",
         url: "rest/apartments/",
         success: function (apartments) {
-            apartmentsCol.empty();
-            for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
-                    '<div class="row no-gutters" style="border-radius: 25px;">' +
-                    '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
-                    '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
-                    '</div>' +
-                    '<div class="col-sm-7">' +
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + apartment.location.address.place + '</h5>' +
-                    '<p class="card-text">' + apartment.price + '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
-                    '</div>')
-
-
-            }
-
+            createApartmentCards(apartments, apartmentsCol);
         }
 
     });
@@ -97,25 +78,7 @@ function searchApartments(apartmentsCol) {
         contentType: "application/json",
         data: JSON.stringify(searchData),
         success: function (apartments) {
-            apartmentsCol.empty();
-            for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
-                    '<div class="row no-gutters" style="border-radius: 25px;">' +
-                    '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
-                    '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
-                    '</div>' +
-                    '<div class="col-sm-7">' +
-                    '<div class="card-body">' +
-                    '<h5 class="card-title">' + apartment.location.address.place + '</h5>' +
-                    '<p class="card-text">' + apartment.price + '</p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
-                    '</div>')
-
-
-            }
+            createApartmentCards(apartments, apartmentsCol);
         }
 
     });
@@ -130,29 +93,37 @@ function sortApartments(apartmentsCol) {
             type: "POST",
             url: "rest/apartments/sort/" + selectedOptionValue,
             success: function(apartments) {
-                apartmentsCol.empty();
-                for (let apartment of apartments) {
-                    apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
-                        '<div class="row no-gutters" style="border-radius: 25px;">' +
-                        '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
-                        '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
-                        '</div>' +
-                        '<div class="col-sm-7">' +
-                        '<div class="card-body">' +
-                        '<h5 class="card-title">' + apartment.location.address.place + '</h5>' +
-                        '<p class="card-text">' + apartment.price + '</p>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
-                        '</div>')
-    
-    
-                }
+                createApartmentCards(apartments, apartmentsCol);
             } 
         
        });
     });
+}
+
+function createApartmentCards(apartments, apartmentsCol) {
+    apartmentsCol.empty();
+            for (let apartment of apartments) {
+                apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
+                    '<div class="row no-gutters" style="border-radius: 25px;">' +
+                    '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
+                    '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
+                    '</div>' +
+                    '<div class="col-sm-7">' +
+                    '<div class="card-body">' +
+                    '<h4 class="card-title">' + apartment.location.address.place + '</h4>' +
+                    '<h5>' + apartment.location.address.street + " " + apartment.location.address.number + '</h5>' + 
+                    '<p class="card-text" style="color: #868e96;">' + apartment.location.latitude + "," + apartment.location.longitude + '</p>' +
+                    '<p class="card-text">Number of rooms: ' + apartment.numberOfRooms + '</p>' + 
+                    '<p class="card-text">Number of guests: ' + apartment.numberOfGuests + '</p>' +
+                    '<h3 class="card-text" style="margin-left: 350px;">' + apartment.price + "e" + '</p>' + 
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
+                    '</div>')
+
+
+            }
 }
 
 function resetForm() {
