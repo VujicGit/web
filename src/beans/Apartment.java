@@ -29,8 +29,8 @@ public class Apartment {
 	private List<Comment> comments;
 	private List<String> images;
 	private double price;
-	private LocalTime checkInTime;
-	private LocalTime checkoutTime;
+	private String checkInTime;
+	private String checkoutTime;
 	private ApartmentStatus apartmentStatus;
 	private List<Amenities> amenities;
 	private List<Reservation> reservation;
@@ -153,20 +153,22 @@ public class Apartment {
 		this.price = price;
 	}
 
-	public LocalTime getCheckInDate() {
+	
+
+	public String getCheckInTime() {
 		return checkInTime;
 	}
 
-	public void setCheckInDate(LocalTime checkInDate) {
-		this.checkInTime = checkInDate;
+	public void setCheckInTime(String checkInTime) {
+		this.checkInTime = checkInTime;
 	}
 
-	public LocalTime getCheckoutDate() {
+	public String getCheckoutTime() {
 		return checkoutTime;
 	}
 
-	public void setCheckoutDate(LocalTime checkoutDate) {
-		this.checkoutTime = checkoutDate;
+	public void setCheckoutTime(String checkoutTime) {
+		this.checkoutTime = checkoutTime;
 	}
 
 	public ApartmentStatus getStatus() {

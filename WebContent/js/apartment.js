@@ -15,24 +15,9 @@ function reserveApartment() {
     let form = $("form[name=reserveForm]");
     form.submit(function (event) {
         event.preventDefault();
-        /*formData = {
-             id: getUrlParameter("id"),
-             startDate: new Date($("#checkInDateInput").val()),
-             nights: $("#nights").val()
-         };
-         $.ajax({
-             type: "POST",
-             url: "rest/apartments/submitReservation",
-             contentType: "application/json",
-             data: JSON.stringify(formData),
-             success: function (data, textStatus, XMLHttpRequest) {
-                 alert("prosao");
-             },
-             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                 var obj = JSON.parse(XMLHttpRequest.responseText);
-                 alert(obj.hello);
-             }
-         })*/
+        if(checkNightsInput($("#nights").val()) !== true) {
+            return;
+        }
 
         $.ajax({
             type: "GET",
@@ -40,10 +25,12 @@ function reserveApartment() {
             success: function (data, textStatus, XMLHttpRequest) {
                 openConfirmReservationModal();
                 fillConfirmReservationForm();
+                $("#noGuestLoggedInError").text("");
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 var obj = JSON.parse(XMLHttpRequest.responseText);
-                alert(obj.errorMessage);
+                $("#noGuestLoggedInError").text(obj.errorMessage);
+            
             }
 
         })
@@ -53,6 +40,7 @@ function reserveApartment() {
 function confirmReservation() {
     $("form[name=confirmReservationForm]").submit(function (event) {
         event.preventDefault();
+
 
         formData = {
             id: getUrlParameter("id"),
@@ -161,8 +149,65 @@ function getApartment() {
         url: "rest/apartments/getApartment/" + getUrlParameter("id"),
         success: function (apartment) {
             fillReservationForm();
+            fillContent(apartment);
         }
     });
+}
+
+function fillContent(apartment) {
+    $.each(apartment.images, function(index, value) {
+        $(".carousel-indicators").append(
+            '<li data-target="#carouselExampleIndicators" data-slide-to="' + index + '"></li>'
+        );
+        if(index === 0) {
+            $(".carousel-inner").append(
+                '<div class="carousel-item active">' +
+                '<img class="d-block w-100" src="' + value + '">' + 
+                '</div>'
+            );
+        }
+        else {
+        $(".carousel-inner").append(
+                '<div class="carousel-item">' +
+                '<img class="d-block w-100" src="' + value + '">' +
+                '</div>'
+        );
+        }
+        
+
+    });
+
+    var tableBody = $("#amenitiesTableBody");
+    tableBody.empty();
+    $.each(apartment.amenities, function(index, value){
+        tableBody.append('<tr>' +
+            '<th scope="row">' + (index + 1) + '</th>' +
+            '<td scope="col">' + value.name + '</td>' +
+            '</tr>'
+        )
+    });
+
+    $("#apartmentPlace").text(apartment.location.address.place + ", " + apartment.location.address.zipCode);
+    $("#apartmentAddress").text(apartment.location.address.street + " " + apartment.location.address.number);
+    $("#apartmentCoordinates").text(apartment.location.latitude + ", " + apartment.location.longitude);
+    $("#priceInput").val(apartment.price);
+    $.each(apartment.comments, function(index, value){
+        $("#comments").append(
+            '<div class="row" style="margin-left: 10vw; margin-top: 20px;">' +
+            '<div class="col-10">' +
+            '<div class="card">' +
+            '<div class="card-body">' +
+            '<h5 class="card-title">' + value.guest.name + " " + value.guest.surname + '</h5>' +
+            '<p class="card-text">' + value.content + '</p>' + 
+            '</div>' + 
+            '</div>' + 
+            '</div>' +
+            '</div>'
+        );
+    });
+        
+    
+    
 }
 
 function fillReservationForm() {
@@ -181,6 +226,7 @@ function fillReservationForm() {
 
     let nightsInput = $("#nights");
     nightsInput.val(nights);
+    
 
 }
 
@@ -198,4 +244,16 @@ function getUrlParameter(param) {
             return parameterName[1];
         }
     }
+}
+
+function checkNightsInput(nights) {
+    var regex = new RegExp('^\\d+$');
+    if (regex.test(nights)) {
+        let nightsInput = $("#nights");
+        nightsInput.css('border', '0');
+        return true;
+    }
+    let nightsInput = $("#nights");
+    nightsInput.css('border', '1px solid red');
+    return false;
 }

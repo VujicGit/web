@@ -167,34 +167,45 @@
                     <div class="carousel">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-
+                              
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="proba/1.jpg" alt="First slide">
-                                </div>
-
+                              
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
                             </a>
-                        </div>
+                          </div>
                     </div>
                 </div>
             </div>
-            <div class="container container-form-custom">
+            <d  iv class="container" style="margin-top: 20px;">
                 <div class="row">
                     <div class="col-8">
+                        <!--<div class="container" style="border-bottom: 2px;">
+                            <h4>OVDE IDE MESTO</h4>
+                            <h6>OVDE IDE ADRESA</h6>
+                            <p style="color: #868e96;">232,2332</p>
+                        </div>-->
 
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="container" style="border-bottom: 2px;">
+                                    <h4 id="apartmentPlace"></h4>
+                                    <h6 id="apartmentAddress"></h6>
+                                    <p id="apartmentCoordinates" style="color: #868e96;"></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
                     </div>
+
                     <div class="col-4">
 
                         <div class="card text-white mb-3 card-custom"
@@ -202,7 +213,6 @@
                             <div class="card-body">
                                 <form name="reserveForm" action="#" method="POST">
                                     <div class="container">
-
 
 
                                         <div class="row div-search-labels">
@@ -227,7 +237,15 @@
                                                 style="width: 100%; padding: 0; border: 0;" id="nights">
 
                                         </div>
-
+                                        <div class="row div-search-labels">
+                                            <p class="search-labels">Price per night</p>
+                                        </div>
+                                        <div class="row">
+                                            <input type="text" class="form-control" readonly="readonly" id="priceInput">
+                                        </div>
+                                        <div class="row">
+                                            <p style="margin:0; color:red" id="noGuestLoggedInError"></p>
+                                        </div>
                                         <div class="row">
 
                                             <button type="submit" class="btn btn-primary form-button-submit"
@@ -240,8 +258,33 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="container">
+                    <div class="row" style="margin-left: 17vw; margin-top: 20px;">
+                        <div class="col-8">
+                            <table class="table" id="tabela">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col"></th>
+        
+                                    </tr>
+                                </thead>
+                                <tbody id="amenitiesTableBody">
+        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" id="comments">
+                
                 </div>
             </div>
+        </div>
 
         </div>
 
