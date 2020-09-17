@@ -20,8 +20,6 @@ $(document).ready(function () {
 
     btnCancel.click(function () {
         getAllApartments(apartmentsCol);
-        let date = $('.input-daterange input').datepicker('getDate');
-        alert(date);
         resetForm();
 
 
@@ -50,6 +48,8 @@ $(document).ready(function () {
         searchApartments(apartmentsCol);
     });
 
+    sortApartments(apartmentsCol);
+
 });
 
 function hideNavBarButtons() {
@@ -66,7 +66,7 @@ function getAllApartments(apartmentsCol) {
         success: function (apartments) {
             apartmentsCol.empty();
             for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-top: 100px;">' +
+                apartmentsCol.append('<div class="card card-custom card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
                     '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
@@ -99,7 +99,7 @@ function searchApartments(apartmentsCol) {
         success: function (apartments) {
             apartmentsCol.empty();
             for (let apartment of apartments) {
-                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-top: 100px;">' +
+                apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
                     '<div class="row no-gutters" style="border-radius: 25px;">' +
                     '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
                     '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
@@ -121,7 +121,39 @@ function searchApartments(apartmentsCol) {
     });
 }
 
+function sortApartments(apartmentsCol) {
+    let sortSelection = $("#sort");
+    sortSelection.change(function() {
+       let selectedOptionValue = $("#sort").val();
 
+        $.ajax({
+            type: "POST",
+            url: "rest/apartments/sort/" + selectedOptionValue,
+            success: function(apartments) {
+                apartmentsCol.empty();
+                for (let apartment of apartments) {
+                    apartmentsCol.append('<div class="card card-custom-apartment" style="width: 50rem; margin-bottom: 100px;">' +
+                        '<div class="row no-gutters" style="border-radius: 25px;">' +
+                        '<div class="col-sm-5" style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"style="background: #868e96;">' +
+                        '<img src="proba/1.jpg"style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;"class="card-img-top h-100" alt="..."> ' +
+                        '</div>' +
+                        '<div class="col-sm-7">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + apartment.location.address.place + '</h5>' +
+                        '<p class="card-text">' + apartment.price + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<a href="apartmentPage.html?id=' + apartment.id + '&checkInDate=' + $("input[name=startDate]").val() + '&checkoutDate=' + $("input[name=endDate]").val() + '"' + 'class="stretched-link"></a>' +
+                        '</div>')
+    
+    
+                }
+            } 
+        
+       });
+    });
+}
 
 function resetForm() {
     $("input[name=place]").val("");

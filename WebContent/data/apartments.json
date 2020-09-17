@@ -100,8 +100,8 @@
     "apar2": {
         "id": "apar2",
         "type": "FULL",
-        "numberOfRooms": 3,
-        "numberOfGuests": 11,
+        "numberOfRooms": 5,
+        "numberOfGuests": 2,
         "location": {
             "latitude": 32.0,
             "longitude": 23.0,

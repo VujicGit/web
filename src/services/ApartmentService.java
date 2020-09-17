@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -33,6 +34,12 @@ import beans.Apartment;
 import beans.Guest;
 import beans.Location;
 import beans.Reservation;
+import beans.SortByGuestsAscending;
+import beans.SortByGuestsDescenging;
+import beans.SortByPriceAscending;
+import beans.SortByPriceDescending;
+import beans.SortByRoomsAscending;
+import beans.SortByRoomsDescending;
 import dao.impl.ApartmentDAO;
 import dao.impl.GuestDAO;
 import dto.ReservationDTO;
@@ -68,7 +75,7 @@ public class ApartmentService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Apartment> getAllApartments() {
 		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
-		return dao.findAll();
+		return dao.getAllActiveApartments();
 	}
 
 	@POST
@@ -326,5 +333,45 @@ public class ApartmentService {
 		System.out.println("Hello world");
 		return dao.add(apartment);
 	}
+	
+	@POST
+	@Path("/sort/{value}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Apartment> sortApartment(@PathParam("value") String value) {
+		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		ArrayList<Apartment> originalApartments = new ArrayList<Apartment>(apartmentDAO.getAllActiveApartments());
+		ArrayList<Apartment> apartments = new ArrayList<Apartment>(getAllApartments());
+		
+		
+		if(value.equals("0")) {
+			return originalApartments;
+		}
+		else if(value.equals("1")) {
+			Collections.sort(apartments, new SortByPriceAscending());
+			return apartments;
+		}
+		else if(value.equals("2")) {
+			Collections.sort(apartments, new SortByPriceDescending());
+			return apartments;
+		}
+		else if(value.equals("3")) {
+			Collections.sort(apartments, new SortByGuestsAscending());
+			return apartments;
+		}
+		else if(value.equals("4")) {
+			Collections.sort(apartments, new SortByGuestsDescenging());
+			return apartments;
+		}
+		else if(value.equals("5")) {
+			Collections.sort(apartments, new SortByRoomsAscending());
+			return apartments;
+		}
+		else if(value.equals("6")){
+			Collections.sort(apartments, new SortByRoomsDescending());
+			return apartments;
+		}
+		return null;
+	}
+	
 
 }
