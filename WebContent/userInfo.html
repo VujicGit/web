@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/userInfo.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <ul class="navbar-nav navbar-ul">
+                <li class="navbar-brand">
+                    <a href="#" class=" navbar-brand-custom">Booking</a>
+                </li>
+                <li class="nav-item nav-item-custom">
+                    <a href="usersPage.html">
+                        <button type="button" class="btn btn-primary navbar-btn-custom">Users</button>
+                    </a>
+                </li>
+                <li class=" nav-item nav-item-custom">
+
+                    <a href="amentityPage.html">
+                        <button type="button" class="btn btn-primary navbar-btn-custom">Amentities</button>
+                    </a>
+                </li>
+                <li class=" nav-item nav-item-custom">
+
+                    <a href="userInfo.html">
+                        <button type="button" class="btn btn-primary navbar-btn-custom">Change info</button>
+                    </a>
+                </li>
+                
+
+            </ul>
+            <ul class="navbar-nav ml-auto navbar-ul" id="navbarUl">
+
+            </ul>
+        </nav>
+        
+
+    </header>
+
+    <main>
+     <div class="container" style="padding-top: 95px;">
+         <div class="row">
+             <div class="col">
+                <form name="changeUserInfoForm">
+                    <div class="form-group modal-form-input" id="nameInput">
+                        <input type="text" class="form-control sign-up-input"
+                            id="username" readonly="readonly">
+                        <p class="error-messages" id="usernameErrorMessage"></p>
+                    </div>
+                    <div class="form-group modal-form-input">
+                        <input type="text" class="form-control sign-up-input"
+                            id="name">
+                        <p class="error-messages" id="nameErrorMessage"></p>
+                    </div>
+                    <div class="form-group modal-form-input">
+                        <input type="text" class="form-control sign-up-input"
+                            id="surname">
+                        <p class="error-messages" id="surnameErrorMessage"></p>
+                    </div>
+                    <div class="form-group modal-form-input">
+                        <input type="password" class="form-control sign-up-input"
+                            id="password">
+                        <p class="error-messages" id="passwordErrorMessage"></p>
+        
+                    </div>
+                    <div class="form-group modal-form-input">
+                        <input type="password" class="form-control sign-up-input"
+                            id="passwordControl">
+                        <p class="error-messages" id="passwordControlErrorMessage"></p>
+                    </div>
+                    <div class="form-group modal-form-input-selection">
+                        <select class="form-control" id="gender">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary " id="btnSignUp">Submit</button>
+                </form>
+             </div>
+         </div>
+     </div>
+
+
+    </main>
+
+
+
+
+    <footer>
+
+
+
+
+    </footer>
+</body>
+
+
+</html>

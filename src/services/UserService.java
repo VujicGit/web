@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import beans.User;
 import dao.impl.AmenitiesDAO;
@@ -81,6 +82,26 @@ public class UserService {
 		return users;
 	}
 
+	@POST
+	@Path("/changeInfo")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response changeUserInfo(User user) {
+		UserDAO userDAO = (UserDAO) ctx.getAttribute("userDAO");
+		if(userDAO.existsById(user.getUsername())) {
+			System.out.println(user.getName());
+			User oldUser = userDAO.findById(user.getUsername());
+			user.setRole(oldUser.getRole());
+			userDAO.update(user);
+			return Response.ok().build();
+		}
+		
+		
+		String message = "{\"errorMessage\": \"Can not change user info\"}";
+		return Response.status(Response.Status.BAD_REQUEST).entity(message).build();
+		
+	}
+	
 	private boolean equalsByUsername(User user, String text) {
 		return user.getUsername().toLowerCase().equals(text.toLowerCase());
 	}

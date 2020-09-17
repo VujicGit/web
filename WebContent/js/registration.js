@@ -25,7 +25,7 @@ $(document).ready(function () {
             url: "rest/register/",
             contentType: "application/json",
             data: JSON.stringify(registerData),
-            complete: function (data) {
+            success: function (data) {
 
 
             }
@@ -50,8 +50,8 @@ function checkUsername() {
 function checkPassword() {
     let passwordInput = $("#password");
     let passwordControlInput = $("#passwordControl");
-    let passwordIndicator = false;
-    let passwordControlIndicator = false;
+    let passwordIndicator = true;
+    let passwordControlIndicator = true;
 
     let passwordControlErrorMessage = $("#passwordControlErrorMessage");
     let passwordErrorMessage = $("#passwordErrorMessage");
@@ -69,7 +69,7 @@ function checkPassword() {
         passwordControlErrorMessage.show();
         passwordControlIndicator = false;
     }
-    if (passwordInput.val() === passwordControlInput.val()) {
+    if (passwordInput.val() === passwordControlInput.val() && passwordIndicator === true && passwordControlIndicator === true) {
         return true;
     } else {
         passwordControlInput.css("border", "1px solid red");
@@ -128,7 +128,7 @@ function checkSurname() {
 function checkSignUpForm() {
     let usernameIndicator = false;
     let nameIndicator = false;
-    let suranmeIndicator = false;
+    let surnameIndicator = false;
     let passwordIndicator = false;
 
     if (checkUsername()) {

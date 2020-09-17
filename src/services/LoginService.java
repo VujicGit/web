@@ -113,7 +113,7 @@ public class LoginService {
 		if (session != null && session.getAttribute("loggedInUser") != null) {
 			return Response.ok().build();
 		}
-		String message = "{\"errorMessage\": \"No user logged in\"}";
+		String message = "{\"href\": \"errors/forbidden.html\"}";
 		return Response.status(Response.Status.FORBIDDEN).entity(message).build();
 	}
 
@@ -126,6 +126,19 @@ public class LoginService {
 		return userPassword.toLowerCase().equals(loginDTOPassword.toLowerCase());
 	}
 
+	@GET
+	@Path("/user")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getLoggedInUser() {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("loggedInUser");
+		if (session != null && session.getAttribute("loggedInUser") != null) {
+			return user;
+		}
+		return null;
+	}
+	
+	
 	@GET
 	@Path("/loggedIn/admin")
 	@Produces(MediaType.APPLICATION_JSON)

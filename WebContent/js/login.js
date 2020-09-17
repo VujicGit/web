@@ -68,6 +68,21 @@ function isUserLoggedIn() {
     });
 }
 
+function checkIfUserLoggedIn() {
+    $.ajax({
+        type: "GET",
+        url: "rest/login/loggedIn/user",
+        success: function (data, textStatus, XMLHttpRequest) {
+
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            var obj = JSON.parse(XMLHttpRequest.responseText);
+            window.location.href = obj.href;
+            
+        }
+    }); 
+}
 function logout() {
     let navbarUl = $("#navbarUl");
 
