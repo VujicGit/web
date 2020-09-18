@@ -46,7 +46,7 @@ function confirmReservation() {
             id: getUrlParameter("id"),
             startDate: new Date($("#confirmReservationCheckInDate").val()),
             nights: $("#confirmReservationCheckoutDate").val(),
-            price: 0,
+            price: $("#confirmReservationTotalPrice").val(),
             message: $("#message").val()
         };
         $.ajax({
