@@ -1,135 +1,88 @@
 {
-
+    "apar2": {
+        "@id": 1,
+        "id": "apar2",
+        "type": "FULL",
+        "numberOfRooms": 3,
+        "numberOfGuests": 11,
+        "location": {
+            "latitude": 32.0,
+            "longitude": 23.0,
+            "address": {
+                "street": "Maksima Gorkog",
+                "number": "8",
+                "place": "Beograd",
+                "zipCode": "22000"
+            }
+        },
+        "datesForRent": [61546168800000],
+        "datesForIssue": [1600552800000, 1600639200000],
+        "host": {
+            "@id": 1,
+            "username": "",
+            "password": "",
+            "name": "",
+            "surname": "",
+            "gender": null,
+            "role": null,
+            "apartments": null
+        },
+        "comments": [],
+        "images": ["data/images/apar1/1.jpg" ,"data/images/apar1/2.jpeg"],
+        "price": 433.0,
+        "checkInTime": null,
+        "checkoutTime": null,
+        "amenities": [{
+            "id": "1",
+            "name": "dada",
+            "deleted": true
+        }],
+        "reservation": [],
+        "deleted": false,
+        "status": "ACTIVE"
+    },
     "apar1": {
+        "@id": 3,
         "id": "apar1",
         "type": "FULL",
         "numberOfRooms": 3,
         "numberOfGuests": 11,
         "location": {
-            "latitude": 3333,
+            "latitude": 3333.0,
             "longitude": 23.0,
             "address": {
-                "street": "dada Crnjanskog",
-                "number": "8",
-                "place": "Sremska Mitrovica",
-                "zipCode": "22000"
-            }
-        },
-        "datesForRent": [61546168800000],
-        "datesForIssue": [1600560000000],
-        "host": {
-            "username": "",
-            "password": "",
-            "name": "",
-            "surname": "",
-            "gender": null
-        },
-        "comments": [{
-            "guest": {
-                "username": "",
-                "password": "",
-                "name": "",
-                "surname": "",
-                "gender": null
-            },
-            "apartment": {
-                "id": null,
-                "type": null,
-                "numberOfRooms": 0,
-                "numberOfGuests": 0,
-                "location": null,
-                "datesForRent": null,
-                "datesForIssue": null,
-                "host": null,
-                "comments": null,
-                "images": null,
-                "price": 0.0,
-                "amenities": null,
-                "reservation": null,
-                "checkoutDate": null,
-                "checkInDate": null,
-                "status": null
-            },
-            "content": "dadada",
-            "rating": 2
-        }],
-        "images": [],
-        "price": 123,
-        "amenities": [{
-            "id": "1",
-            "name": "Tv"
-        }],
-        "reservation": [{
-            "apartment": {
-                "id": null,
-                "type": null,
-                "numberOfRooms": 0,
-                "numberOfGuests": 0,
-                "location": null,
-                "datesForRent": null,
-                "datesForIssue": null,
-                "host": null,
-                "comments": null,
-                "images": null,
-                "price": 0.0,
-                "amenities": null,
-                "reservation": null,
-                "checkoutDate": null,
-                "checkInDate": null,
-                "status": null
-            },
-            "reservationBegins": 61544786400000,
-            "numberOfNights": 4,
-            "price": 22999.0,
-            "message": "dada",
-            "guest": {
-                "username": "",
-                "password": "",
-                "name": "",
-                "surname": "",
-                "gender": null
-            },
-            "status": "ACCEPTED"
-        }],
-        "checkoutDate": null,
-        "checkInDate": null,
-        "status": "ACTIVE"
-
-    },
-
-    "apar2": {
-        "id": "apar2",
-        "type": "FULL",
-        "numberOfRooms": 5,
-        "numberOfGuests": 2,
-        "location": {
-            "latitude": 32.0,
-            "longitude": 23.0,
-            "address": {
-                "street": "dada Crnjanskog",
-                "number": "8",
+                "street": "Brace Ribnikar",
+                "number": "9",
                 "place": "Novi Sad",
                 "zipCode": "22000"
             }
         },
         "datesForRent": [61546168800000],
-        "datesForIssue": [61547378400000],
+        "datesForIssue": [1600812000000, 1600898400000, 1600552800000, 1600639200000],
         "host": {
+            "@id": 2,
             "username": "",
             "password": "",
             "name": "",
             "surname": "",
-            "gender": null
+            "gender": null,
+            "role": null,
+            "apartments": null
         },
         "comments": [{
             "guest": {
-                "username": "",
-                "password": "",
-                "name": "",
-                "surname": "",
-                "gender": null
+                "@id": 2,
+                "username": "bojan123",
+                "password": "bojan123",
+                "name": "Bojan",
+                "surname": "Vujic",
+                "gender": "MALE",
+                "role": "GUEST",
+                "apartments": [],
+                "reservations": []
             },
             "apartment": {
+                "@id": 4,
                 "id": null,
                 "type": null,
                 "numberOfRooms": 0,
@@ -141,23 +94,121 @@
                 "comments": null,
                 "images": null,
                 "price": 0.0,
+                "checkInTime": null,
+                "checkoutTime": null,
                 "amenities": null,
                 "reservation": null,
-                "checkoutDate": null,
-                "checkInDate": null,
+                "deleted": false,
+                "status": null
+            },
+            "content": "Super smestaj, sve pohvale domacinu",
+            "rating": 5
+        }, {
+            "guest": null,
+            "apartment": null,
+            "content": null,
+            "rating": 0
+        }],
+        "images": ["data/images/apar1/2.jpeg"],
+        "price": 123.0,
+        "checkInTime": "9pm",
+        "checkoutTime": "12pm",
+        "amenities": [{
+            "id": "1",
+            "name": "pomocni lezaj",
+            "deleted": false
+        }, {
+            "id": "2",
+            "name": "tv",
+            "deleted": false
+        }, {
+            "id": "3",
+            "name": "usisivac",
+            "deleted": false
+        }, {
+            "id": "4",
+            "name": "pegla",
+            "deleted": false
+        }, {
+            "id": "5",
+            "name": "ves masina",
+            "deleted": false
+        }],
+        "reservation": [],
+        "deleted": false,
+        "status": "ACTIVE"
+    },
+    "apar4": {
+        "@id": 5,
+        "id": "apar4",
+        "type": "FULL",
+        "numberOfRooms": 0,
+        "numberOfGuests": 0,
+        "location": {
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "address": {
+                "street": "",
+                "number": "",
+                "place": "",
+                "zipCode": ""
+            }
+        },
+        "datesForRent": [],
+        "datesForIssue": [],
+        "host": {
+            "@id": 3,
+            "username": "",
+            "password": "",
+            "name": "",
+            "surname": "",
+            "gender": null,
+            "role": null,
+            "apartments": null
+        },
+        "comments": [{
+            "guest": {
+                "@id": 3,
+                "username": "",
+                "password": "",
+                "name": "",
+                "surname": "",
+                "gender": null,
+                "role": null,
+                "apartments": null,
+                "reservations": null
+            },
+            "apartment": {
+                "@id": 6,
+                "id": null,
+                "type": null,
+                "numberOfRooms": 0,
+                "numberOfGuests": 0,
+                "location": null,
+                "datesForRent": null,
+                "datesForIssue": null,
+                "host": null,
+                "comments": null,
+                "images": null,
+                "price": 0.0,
+                "checkInTime": null,
+                "checkoutTime": null,
+                "amenities": null,
+                "reservation": null,
+                "deleted": false,
                 "status": null
             },
             "content": "dadada",
             "rating": 2
         }],
         "images": [],
-        "price": 433.0,
-        "amenities": [{
-            "id": "1",
-            "name": "Tv"
-        }],
+        "price": 0.0,
+        "checkInTime": null,
+        "checkoutTime": null,
+        "amenities": [],
         "reservation": [{
             "apartment": {
+                "@id": 7,
                 "id": null,
                 "type": null,
                 "numberOfRooms": 0,
@@ -169,28 +220,32 @@
                 "comments": null,
                 "images": null,
                 "price": 0.0,
+                "checkInTime": null,
+                "checkoutTime": null,
                 "amenities": null,
                 "reservation": null,
-                "checkoutDate": null,
-                "checkInDate": null,
+                "deleted": false,
                 "status": null
             },
-            "reservationBegins": 61544786400000,
-            "numberOfNights": 4,
-            "price": 22999.0,
+            "reservationBegins": 0,
+            "numberOfNights": 0,
+            "price": 0.0,
             "message": "dada",
             "guest": {
+                "@id": 4,
                 "username": "",
                 "password": "",
                 "name": "",
                 "surname": "",
-                "gender": null
+                "gender": null,
+                "role": null,
+                "apartments": null,
+                "reservations": null
             },
-            "status": "ACCEPTED"
+            "status": "ACCEPTED",
+            "deleted": false
         }],
-        "checkoutDate": null,
-        "checkInDate": null,
-        "status": "ACTIVE"
-
+        "deleted": false,
+        "status": "INACTIVE"
     }
 }

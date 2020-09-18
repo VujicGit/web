@@ -1,9 +1,32 @@
 {
     "pera": {
+        "@id": 1,
         "username": "pera",
         "password": "pera123",
         "name": "Petar",
         "surname": "Petrovic",
+        "gender": "MALE",
+        "role": "GUEST",
+        "apartments": [],
+        "reservations": []
+    },
+    "ognjen123": {
+        "@id": 2,
+        "username": "ognjen123",
+        "password": "ognjen123",
+        "name": "Ognjen",
+        "surname": "Civcic",
+        "gender": "MALE",
+        "role": "GUEST",
+        "apartments": [],
+        "reservations": []
+    },
+    "Bojan123": {
+        "@id": 3,
+        "username": "Bojan123",
+        "password": "bojan123",
+        "name": "Bojan",
+        "surname": "Vujic",
         "gender": "MALE",
         "role": "GUEST",
         "apartments": [],
