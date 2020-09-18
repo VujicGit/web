@@ -59,6 +59,10 @@ function confirmReservation() {
                 getDatesForIssue();
                 $('.date').datepicker('update', '');
 
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Can not make reservation for selected dates!");
+            
             }
         });
     })
