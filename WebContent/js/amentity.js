@@ -42,7 +42,7 @@ function updateAmenity() {
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 var obj = JSON.parse(XMLHttpRequest.responseText);
-                $("#updateAmenityerror").val("ddadsdsa");
+                alert(obj.errorMessage);
 
             }
         });

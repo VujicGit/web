@@ -35,7 +35,7 @@ function createTableData(users) {
 }
 
 function searchUsers() {
-    $("form[name=searchForm]").submit(function (event) {
+    $("form[name=searchUsersForm]").submit(function (event) {
         event.preventDefault();
         let searchInput = $("#searchInput").val();
         searchData = {
