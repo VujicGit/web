@@ -36,9 +36,13 @@ $(document).ready(function () {
             numberOfRooms: $("input[name=rooms]").val(),
             numberOfGuests: $("input[name=guests]").val()
         }
+        if(checkIsDateEmpty($("input[name=startDate]").val(), $("input[name=endDate]").val()) === false) {
+            searchData.checkinDate = new Date("01/01/2020");
+            searchData.checkoutDate = new Date("01/01/2020");
+        }
         let inputStartDate = $("input[name=startDate]").val();
         let inputEndDate = $("input[name=endDate]").val();
-        if (checkFormData(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests, inputStartDate, inputEndDate) !== true) {
+        if (checkFormData(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests, $("input[name=startDate]").val(), $("input[name=endDate]").val()) !== true) {
             return;
         }
         if (checkForReset(searchData.location, searchData.minPrice, searchData.maxPrice, searchData.numberOfRooms, searchData.numberOfGuests, searchData.checkinDate, searchData.checkoutDate)) {
@@ -198,7 +202,45 @@ function checkGuests(guests) {
     return false;
 }
 
-function checkDate(startDate, endDate) {
+function checkDate(startDateString, endDateString) {
+
+    
+    var checkStartDate = Date.parse(startDateString);
+    var checkEndDate = Date.parse(endDateString);
+
+    var startDate = true;
+    var startDate = true;
+
+    var startDateInput = $("input[name=startDate]");
+    var endDateInput = $("input[name=endDate]");
+
+    if(startDateString === "" && endDateString == "") {
+        return true;
+    }
+ 
+    if(isNaN(checkStartDate) == true) {
+        startDate = false;
+        startDateInput.css('border', '1px solid red');
+    }
+    else {
+        startDateInput.css('border', '0');
+        startDate = true;
+    }
+
+    if(isNaN(checkEndDate) == true) {
+        endDate = false;
+        endDateInput.css('border', '1px solid red');
+    }
+    else {
+        endDate = true;
+        endDateInput.css('border', '0');
+
+    }
+
+    return startDate && endDate;
+
+} 
+function checkIsDateEmpty(startDate, endDate) {
   
 
     if(startDate.toString() === "" || endDate.toString() === "") {
@@ -209,7 +251,9 @@ function checkDate(startDate, endDate) {
     return true;
 }
 
-function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests, startDate, endDate) {
+
+
+function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests, startDateString, endDateString) {
     let placeState = false;
     let minPriceState = false;
     let maxPriceState = false;
@@ -232,8 +276,8 @@ function checkFormData(place, minPrice, maxPrice, numberOfRooms, numberOfGuests,
     if (checkGuests(numberOfGuests)) {
         numberOfGuestsState = true;
     }
-    if(checkDate(startDate, endDate)) {
-        date = true;
+    if(checkDate(startDateString, endDateString)) {
+        date = true
     }
     if (placeState && minPriceState && maxPriceState && numberOfRoomsState && numberOfGuestsState && date) {
 

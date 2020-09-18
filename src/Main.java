@@ -87,7 +87,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		*/
-		ObjectMapper mapper2 = new ObjectMapper();
+		/*ObjectMapper mapper2 = new ObjectMapper();
 		HashMap<String, Apartment> map2 = null;
 		TypeReference<HashMap<String, Apartment>> typeRef = new TypeReference<HashMap<String, Apartment>>() {
 		};
@@ -112,7 +112,12 @@ public class Main {
 		
 		for(Apartment it : apartmentList) {
 			System.out.println(it.getNumberOfGuests());
-		}
+		}*/
+		
+		Date date1 = new Date("01/01/2020");
+		Date date2 = new Date("01/01/2020");
+		
+		
 		
 		
 

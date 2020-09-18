@@ -47,7 +47,7 @@ public class LoginService {
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(LoginDTO loginDTO) {
 
 		if (!userExists(loginDTO.getUsername())) {
@@ -65,15 +65,15 @@ public class LoginService {
 		if (user.getRole() == Role.GUEST) {
 			GuestDAO guestDAO = (GuestDAO) ctx.getAttribute("guestDAO");
 			Guest guest = guestDAO.findById(loginDTO.getUsername());
-			System.out.println(guest.getUsername());
 			request.getSession(true).setAttribute("loggedInUser", guest);
-
+			
 			return Response.ok().entity("indexproba.html").build(); // treba proslediti pocetnu stranicu odgovarajuceg
 																	// korisnika
 		} else if (user.getRole() == Role.ADMIN) {
 
 			request.getSession().setAttribute("loggedInUser", user);
-			return Response.ok().entity("usersPage.html").build();
+			String message = "{\"href\": \"usersPage.html\"}";
+			return Response.ok().entity(message).build();
 		} else {
 			/* HOST */
 		}

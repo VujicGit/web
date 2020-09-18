@@ -143,6 +143,21 @@ public class AmenitiesService {
 		Amenities amenity = amenitiesDAO.findById(amenityDTO.getId());
 		amenity.setName(amenityDTO.getName());
 		amenitiesDAO.update(amenity);
+		
+		ApartmentDAO  apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
+		
+		ArrayList<Apartment> apartments = new ArrayList<Apartment>(apartmentDAO.findAll());
+		
+		for (Apartment apartment : apartments) {
+			ArrayList<Amenities> amenities = (ArrayList<Amenities>) apartment.getAmenities();
+			for (Amenities amenityIt : amenities) {
+				if(amenityIt.getId().equals(amenity.getId())) {
+					amenityIt.setName(amenity.getName());
+				}
+			}
+			apartmentDAO.update(apartment);
+		}
+		
 		return Response.ok().build();
 	}
 	

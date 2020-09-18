@@ -84,7 +84,7 @@ public class ApartmentService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Collection<Apartment> search(SearchDTO searchDTO) {
 		ApartmentDAO dao = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
-		ArrayList<Apartment> apartments = new ArrayList<Apartment>(dao.findAll());
+		ArrayList<Apartment> apartments = new ArrayList<Apartment>(dao.getAllActiveApartments());
 		for (Apartment apartment : new ArrayList<Apartment>(apartments)) {
 			if (!equalsByPlace(apartment, searchDTO) && !searchDTO.getLocation().equals("")) {
 				apartments.remove(apartment);
@@ -102,10 +102,12 @@ public class ApartmentService {
 				apartments.remove(apartment);
 			}
 
-			if (!checkDates(apartment, searchDTO.getCheckinDate(), searchDTO.getCheckoutDate())) {
-				apartments.remove(apartment);
+			if (searchDTO.getCheckinDate().compareTo(new Date("01/01/2020")) != 0
+					&& searchDTO.getCheckoutDate().compareTo(new Date("01/01/2020")) != 0) {
+				if (!checkDates(apartment, searchDTO.getCheckinDate(), searchDTO.getCheckoutDate())) {
+					apartments.remove(apartment);
+				}
 			}
-
 		}
 
 		return apartments;
@@ -333,7 +335,7 @@ public class ApartmentService {
 		System.out.println("Hello world");
 		return dao.add(apartment);
 	}
-	
+
 	@POST
 	@Path("/sort/{value}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -341,37 +343,29 @@ public class ApartmentService {
 		ApartmentDAO apartmentDAO = (ApartmentDAO) ctx.getAttribute("apartmentDAO");
 		ArrayList<Apartment> originalApartments = new ArrayList<Apartment>(apartmentDAO.getAllActiveApartments());
 		ArrayList<Apartment> apartments = new ArrayList<Apartment>(getAllApartments());
-		
-		
-		if(value.equals("0")) {
+
+		if (value.equals("0")) {
 			return originalApartments;
-		}
-		else if(value.equals("1")) {
+		} else if (value.equals("1")) {
 			Collections.sort(apartments, new SortByPriceAscending());
 			return apartments;
-		}
-		else if(value.equals("2")) {
+		} else if (value.equals("2")) {
 			Collections.sort(apartments, new SortByPriceDescending());
 			return apartments;
-		}
-		else if(value.equals("3")) {
+		} else if (value.equals("3")) {
 			Collections.sort(apartments, new SortByGuestsAscending());
 			return apartments;
-		}
-		else if(value.equals("4")) {
+		} else if (value.equals("4")) {
 			Collections.sort(apartments, new SortByGuestsDescenging());
 			return apartments;
-		}
-		else if(value.equals("5")) {
+		} else if (value.equals("5")) {
 			Collections.sort(apartments, new SortByRoomsAscending());
 			return apartments;
-		}
-		else if(value.equals("6")){
+		} else if (value.equals("6")) {
 			Collections.sort(apartments, new SortByRoomsDescending());
 			return apartments;
 		}
 		return null;
 	}
-	
 
 }

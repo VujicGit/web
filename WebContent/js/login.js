@@ -17,7 +17,8 @@ $(document).ready(function () {
             success: function (data, textStatus, XMLHttpRequest) {
 
                 if (window.location.href.includes("apartmentPage.html") != true) {
-                    location.href = XMLHttpRequest.responseText;
+                    var obj = JSON.parse(XMLHttpRequest.responseText);
+                    window.location.href = obj.href;
 
 
                 }
